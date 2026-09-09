@@ -1,50 +1,23 @@
-# openScale-Treiber in Scale2Garmin
+# openScale driver integration
 
-Quelle: https://github.com/oliexdev/openScale
+Source: [oliexdev/openScale](https://github.com/oliexdev/openScale)  
+Pinned commit: `ac5753b062112e4d74772e6b50b084cd68c59175`  
+License: GPL-3.0-or-later
 
-Fest eingebundener Stand: `ac5753b062112e4d74772e6b50b084cd68c59175`.
-Lizenz: GPL-3.0-or-later; Copyright-Hinweise stehen in den Quelldateien.
+This module contains 64 registered handler variants plus their protocol libraries and
+BLE GATT, BLE broadcast and Classic SPP adapters. A separate openScale installation is
+not required.
 
-Übernommen wurden die 64 registrierten Handler-Varianten, ihre Protokollbibliotheken
-und die GATT-, Broadcast- und Classic-SPP-Adapter. Die Reihenfolge der Erkennung
-entspricht openScale. Die funktionierende native BS44x-Verbindung bleibt in der App
-erhalten; die weiteren Modelle verwenden dieses Modul. Eine openScale-Installation
-ist nicht erforderlich.
+Integration changes:
 
-Anpassungen:
+- Removed Compose configuration screens and connected drivers to the native Scale2Garmin UI.
+- Replaced openScale storage dependencies with app profiles and private per-device settings.
+- Kept unit conversions while limiting stored values to weight, fat, water, muscle, bone and basal metabolic rate.
+- Disabled protocol and measurement logging.
+- Added deterministic session cleanup.
+- Retained the relevant upstream protocol and registry tests.
 
-- Compose-Konfigurationsoberflächen und ihre Imports entfernt; Konfiguration und
-  Benutzer-/Consent-Abfragen erfolgen über die native Scale2Garmin-Oberfläche.
-- `ModernScaleAdapter` verwendet die App-Profile und private SharedPreferences
-  statt openScale-Datenbank und Facades. Treibereinstellungen sind nach Handler und
-  Geräteadresse getrennt. Die App liefert ein ausgewähltes Profil an den Treiber.
-- UI-Metadaten an den typisierten Messwerten wurden entfernt. Einheitentypen und
-  Umrechnungen bleiben erhalten. Scale2Garmin übernimmt Gewicht, Fett, Wasser,
-  Muskelanteil, Knochenmasse und Grundumsatz; weitere Treiberwerte werden nicht in
-  die Scale2Garmin-Datenbank oder nach Garmin übernommen.
-- Protokoll- und Messdatenlogging deaktiviert.
-- Beim Ende einer Sitzung werden Handler und Transport geschlossen; der
-  Broadcast-Adapter gibt zusätzlich den BluetoothCentralManager frei.
-- Originale Testbibliotheken und Registry-Tests übernommen; Factory-Aufruf auf
-  `DriverCatalog` umbenannt, Android-Testversion auf API 35 gesetzt.
+`scripts/import_openscale.py` documents the original import; it is not an updater.
 
-`scripts/import_openscale.py` dokumentiert den initialen Import. Danach erfolgten
-die oben beschriebenen Integrationsänderungen; das Skript ist kein Updater.
-
-## Modellgrenzen
-
-Ein eingebundener Treiber ist keine Bestätigung für jede Hardware- oder Firmware-
-Variante. Entscheidend sind die vom Gerät übertragenen Bluetooth-Kennungen und der
-Funktionsumfang des jeweiligen openScale-Treibers. Die Modellliste wird aus den
-übernommenen Registry-Testfällen erzeugt und liegt unter `docs/SUPPORTED_SCALES.md`.
-
-BLE-Modelle werden bei der Suche erkannt. Classic-SPP-Waagen zunächst in den
-Android-Bluetooth-Einstellungen koppeln; erkannte gekoppelte Modelle erscheinen
-danach in der Geräteliste. Xiaomi S400 benötigt ggf. seinen Bind-Key, bestimmte
-Huawei-Modelle benötigen gerätespezifische Schlüssel. Diese können in den
-waagenspezifischen Einstellungen eingegeben werden; sie werden nicht beschafft.
-
-Zusätzliche Körperwerte werden teilweise vom ursprünglichen openScale-Treiber
-aus Impedanz und Profilangaben geschätzt. Daher müssen Geburtsdatum, Größe,
-Geschlecht und Aktivitätsstufe korrekt sein. Für die BS444 bleiben die von der
-Waage gelieferten Werte maßgeblich.
+Hardware and firmware revisions can differ. Some scales require prior Android pairing,
+profile data or device-specific keys. See the [supported scale list](../docs/SUPPORTED_SCALES.md).

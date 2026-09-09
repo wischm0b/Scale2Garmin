@@ -1,12 +1,14 @@
-# Scale2Garmin – Logoentwürfe
+# Scale2Garmin logo concepts
 
-## Übernommenes Launcher-Icon
+## Selected launcher icon
 
-Datei: `Scale2Garmin-Launcher.png`, unveränderte Ausgabe des eingebauten image_gen-Werkzeugs, mit B als Bearbeitungsvorlage. Android verwendet das transparente Symbol vor weißem Hintergrund als adaptives Icon.
+File: `Scale2Garmin-Launcher.png`, generated from concept B. Android uses the
+transparent symbol as the foreground of the adaptive icon.
 
 Prompt: Use case: precise-object-edit. Input image is the selected logo B to preserve. Produce the Android launcher foreground asset: retain exactly the blue and charcoal S2 ribbon/forward-arrow symbol and its small scale display from this image, remove ONLY the wordmark below. Preserve the shape, proportions, colors and details of the chosen symbol. Center this symbol on a square genuinely transparent canvas, with the symbol occupying 60% of canvas width and height at most, leaving 20% transparent padding each side for Android adaptive icon masks. No text below, no new elements, no background, no shadows added. Crisp edges.
 
-Erstellt mit dem eingebauten image_gen-Werkzeug. Variante B wurde ausgewählt und als App-Icon übernommen. Die Dateien sind unveränderte Werkzeugausgaben.
+Generated with the built-in image tool. Concept B was selected as the app icon. The
+PNG files are unmodified generation outputs.
 
 ## A
 

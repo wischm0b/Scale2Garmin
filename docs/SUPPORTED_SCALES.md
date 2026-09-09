@@ -1,10 +1,8 @@
-# Waagentreiber in Scale2Garmin
+# Supported scales
 
-Aus den Erkennungstestfällen des eingebundenen openScale-Stands generiert.
-Die Funktionsspalten beschreiben den jeweiligen Ursprungstreiber, nicht zusätzliche
-Scale2Garmin-Funktionen. Scale2Garmin speichert und überträgt die in der README
-aufgeführten Messwerte. Firmware-Abweichungen und erforderliche Bindungsschlüssel
-können die Verbindung einschränken; nicht jedes Modell wurde hier am Gerät getestet.
+Generated from the detection tests in the pinned openScale driver set. Capability
+columns describe the upstream driver. Firmware differences and required binding keys
+can affect compatibility; most models have not been tested with physical hardware here.
 
 | Scale | Handler | Connection | Body metrics | History data | Live weight | Time sync | User sync | Unit config | Battery | Remarks |
 |---|---|---|---|---|---|---|---|---|---|---|
