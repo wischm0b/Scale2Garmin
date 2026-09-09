@@ -12,7 +12,7 @@ Garmin Connect. Health Connect export is optional. Android 12 or newer is requir
 - Optionally exports supported values to Health Connect.
 - Shows multiple chart series, trends, forecasts and a target-weight estimate.
 - Imports VitaDock+ CSV exports and Scale2Garmin backups.
-- Writes an automatic CSV backup after each new measurement. The default file is overwritten; optional daily snapshots are available.
+- Writes an automatic CSV backup after each new measurement.
 - Includes German and English interfaces with light and dark themes.
 
 Scale support comes from a pinned openScale driver set. See the
@@ -22,9 +22,9 @@ tested with real hardware; most other drivers are covered by imported protocol t
 
 ## Setup
 
-1. Install the APK without uninstalling an existing version.
+1. Install the APK.
 2. Open **Settings**, scan for a scale and select its user profile.
-3. Connect a Garmin account and test one manual upload.
+3. Connect a Garmin account.
 4. Enable automatic Garmin, Health Connect or CSV synchronization as needed.
 5. Pull down on the main screen or tap the connection icon to receive a measurement.
 
