@@ -1,0 +1,315 @@
+/*
+ * openScale
+ * Copyright (C) 2025 olie.xdev <olie.xdeveloper@googlemail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package com.health.openscale.core.bluetooth.scales
+
+import android.bluetooth.le.ScanResult
+import android.os.ParcelUuid
+import com.health.openscale.R
+import com.health.openscale.core.data.MeasurementType
+import com.health.openscale.core.data.UnitType
+import com.health.openscale.core.data.MeasurementTypeIcon
+import com.health.openscale.core.bluetooth.data.ScaleMeasurement
+import com.health.openscale.core.bluetooth.data.ScaleUser
+import com.health.openscale.core.bluetooth.libs.BmrFormula
+import com.health.openscale.core.bluetooth.libs.BoneFormula
+import com.health.openscale.core.bluetooth.libs.S400Aggregator
+import com.health.openscale.core.bluetooth.libs.S400BodyComposition
+import com.health.openscale.core.bluetooth.libs.S400Decryptor
+import com.health.openscale.core.bluetooth.libs.S400Inputs
+import com.health.openscale.core.data.GenderType
+import com.health.openscale.core.service.ScannedDeviceInfo
+import java.util.Date
+import java.util.Locale
+import kotlin.text.isNotEmpty
+import kotlin.text.lowercase
+import com.health.openscale.core.data.Bpm
+import com.health.openscale.core.data.Kcal
+import com.health.openscale.core.data.Kg
+import com.health.openscale.core.data.Ohm
+import com.health.openscale.core.data.Percent
+
+/**
+ * Xiaomi Body Composition Scale S400 handler.
+ *
+ * Based on https://github.com/lswiderski/mi-scale-exporter and
+ * https://github.com/lswiderski/MiScaleBodyComposition
+ *
+ * The S400 broadcasts AES-CCM encrypted advertisement data containing:
+ * - Weight
+ * - Impedance (for body composition calculation)
+ * - Heart rate
+ *
+ * Unlike older Mi Scales, the S400 requires:
+ * - A BLE bind key extracted from Xiaomi Cloud
+ * - The scale's MAC address (used in nonce construction)
+ *
+ * This scale uses broadcast-only mode (no GATT connection) and sends
+ * AES-CCM encrypted service data in BLE advertisements.
+ */
+class MiScaleS400Handler : ScaleDeviceHandler() {
+
+    companion object {
+        // Settings keys for S400 configuration
+        // Flat paths on purpose: the derived CSV column stays the ECW / ICW / BCM these
+        // quantities exported as when they were predefined. Colour, icon and unit match
+        // their former seeds, so nothing changes visually for anyone upgrading.
+        val EXTRACELLULAR_WATER = MeasurementType.devicePercent(
+            "ecw", R.string.measurement_type_ecw,
+            icon = MeasurementTypeIcon.IC_M_SCATTER_PLOT, color = 0xFF4FC3F7.toInt()
+        )
+        val INTRACELLULAR_WATER = MeasurementType.devicePercent(
+            "icw", R.string.measurement_type_icw,
+            icon = MeasurementTypeIcon.IC_M_BUBBLE_CHART, color = 0xFF0288D1.toInt()
+        )
+        val BODY_CELL_MASS = MeasurementType.deviceKg(
+            "bcm", R.string.measurement_type_bcm,
+            icon = MeasurementTypeIcon.IC_M_HIVE, color = 0xFF558B2F.toInt()
+        )
+
+        private const val SETTINGS_KEY_BIND_KEY = "s400_bind_key"
+        private const val SETTINGS_KEY_MAC_ADDRESS = "s400_mac_address"
+        private const val SETTINGS_KEY_BONE_FORMULA = "s400_bone_formula"
+        private const val SETTINGS_KEY_BMR_FORMULA = "s400_bmr_formula"
+
+        // Known S400 device name patterns
+        // The S400 may advertise with various names depending on firmware/region
+        // Format seen in practice: "Xiaomi Scale S400 XXXX" where XXXX is last 4 of MAC
+        private val KNOWN_NAME_PATTERNS = listOf(
+            "SCALE S400",                  // Core pattern - matches "Xiaomi Scale S400 8E8B"
+            "XMTZC14HM",                   // S400 model identifier (raw BLE name)
+            "XMTZC",                       // Xiaomi scale prefix
+        )
+
+        // S400 Service UUID (Xiaomi Body Composition service)
+        private val SERVICE_UUID_S400 = ParcelUuid.fromString("0000181b-0000-1000-8000-00805f9b34fb")
+    }
+
+    // Track if we've warned about missing configuration
+    private var warnedMissingConfig = false
+
+    // Holds per-device session state until both impedance packets land.
+    private val aggregator = S400Aggregator()
+
+
+    
+
+    
+
+    override fun supportFor(device: ScannedDeviceInfo): DeviceSupport? {
+        val name = device.name.uppercase(Locale.ROOT)
+
+        // Check if device name matches known S400 patterns
+        // Use contains() for flexibility - some names may have prefixes/suffixes
+        val isS400 = KNOWN_NAME_PATTERNS.any { pattern ->
+            val upperPattern = pattern.uppercase(Locale.ROOT)
+            name.contains(upperPattern) || name.startsWith(upperPattern)
+        }
+
+        if (!isS400) return null
+
+        return DeviceSupport(
+            displayName = "Xiaomi Body Composition Scale S400",
+            capabilities = setOf(
+                DeviceCapability.LIVE_WEIGHT_STREAM,
+                DeviceCapability.BODY_COMPOSITION
+            ),
+            implemented = setOf(
+                DeviceCapability.LIVE_WEIGHT_STREAM,
+                DeviceCapability.BODY_COMPOSITION
+            ),
+            tuningProfile = TuningProfile.Conservative,
+            linkMode = LinkMode.BROADCAST_ONLY
+        )
+    }
+
+    /**
+     * Process BLE advertisements from the S400 scale.
+     *
+     * The S400 sends encrypted service data that we need to decrypt
+     * using the user's bind key and the scale's MAC address.
+     */
+    override fun onAdvertisement(result: ScanResult, user: ScaleUser): BroadcastAction {
+        // Get configured bind key and MAC address
+        val bindKey = settingsGetString(SETTINGS_KEY_BIND_KEY)
+        val configuredMac = settingsGetString(SETTINGS_KEY_MAC_ADDRESS)
+
+        // Get MAC from scan result (format: XX:XX:XX:XX:XX:XX)
+        val deviceMac = result.device.address
+
+        // Use configured MAC if available, otherwise use detected MAC
+        val macAddress = if (!configuredMac.isNullOrEmpty() && S400Decryptor.isValidMacAddress(configuredMac)) {
+            configuredMac
+        } else {
+            deviceMac
+        }
+
+        // Validate configuration
+        if (bindKey.isNullOrEmpty() || !S400Decryptor.isValidBindKey(bindKey)) {
+            if (!warnedMissingConfig) {
+                logW("S400: Missing or invalid bind key. Configure in Settings.")
+                userWarn(R.string.bt_s400_missing_bind_key)
+                warnedMissingConfig = true
+            }
+            return BroadcastAction.IGNORED
+        }
+
+        // Extract service data from advertisement
+        val serviceData = extractServiceData(result) ?: return BroadcastAction.IGNORED
+
+        logD("S400 advert: ${serviceData.size} bytes from $deviceMac")
+
+        // Attempt decryption
+        val measurement = try {
+            S400Decryptor.decrypt(serviceData, macAddress, bindKey)
+        } catch (e: Exception) {
+            logW("S400 decryption failed: ${e.message}")
+            return BroadcastAction.IGNORED
+        }
+
+        if (measurement == null) {
+            logD("S400: No valid measurement in advertisement")
+            return BroadcastAction.IGNORED
+        }
+
+        logD(
+            "S400 packet: weight=${measurement.weightKg}kg, " +
+                "impedanceHigh=${measurement.impedanceHigh}, " +
+                "impedanceLow=${measurement.impedanceLow}, " +
+                "hr=${measurement.heartRate}"
+        )
+
+        val finalized = when (val outcome = aggregator.ingest(deviceMac, measurement, System.currentTimeMillis())) {
+            is S400Aggregator.Outcome.Pending -> return BroadcastAction.CONSUMED_KEEP_SCANNING
+            is S400Aggregator.Outcome.Duplicate -> return BroadcastAction.CONSUMED_KEEP_SCANNING
+            is S400Aggregator.Outcome.Finalized -> outcome
+        }
+
+        logI(
+            "S400 finalized: weight=${finalized.weightKg}kg, " +
+                "impedanceHigh=${finalized.impedanceHigh}, " +
+                "impedanceLow=${finalized.impedanceLow}, " +
+                "hr=${finalized.heartRate}, timedOut=${finalized.timedOut}"
+        )
+
+        val boneFormula = readBoneFormula()
+        val bmrFormula = readBmrFormula()
+
+        val composition = S400BodyComposition.compute(
+            S400Inputs(
+                age = user.age,
+                sexMale = user.gender == GenderType.MALE,
+                heightCm = user.bodyHeight,
+                weightKg = finalized.weightKg,
+                rHighRaw = finalized.impedanceHigh,
+                // Single-band fallback when Packet B never arrives (older firmware path).
+                rLowRaw = finalized.impedanceLow ?: finalized.impedanceHigh,
+            ),
+            boneFormula = boneFormula,
+            bmrFormula = bmrFormula,
+        )
+
+        val scaleMeasurement = ScaleMeasurement().apply {
+            dateTime = Date()
+            userId = user.id
+            this[MeasurementType.WEIGHT] = Kg(finalized.weightKg)
+            finalized.heartRate?.let { this[MeasurementType.HEART_RATE] = Bpm(it) }
+            this[MeasurementType.IMPEDANCE] = Ohm(finalized.impedanceHigh.toFloat())
+            finalized.impedanceLow?.let { this[MeasurementType.IMPEDANCE_LOW] = Ohm(it.toFloat()) }
+
+            this[MeasurementType.BODY_FAT] = Percent(composition.bfPct ?: 0f)
+            this[MeasurementType.WATER] = Percent(composition.tbwPct ?: 0f)
+            this[MeasurementType.MUSCLE] = Percent(composition.smmPct ?: 0f)
+            this[MeasurementType.BONE] = Kg(composition.boneKg ?: 0f)
+            this[MeasurementType.LBM] = Kg(composition.ffmKg ?: 0f)
+            this[MeasurementType.VISCERAL_FAT] = composition.vfi ?: 0f
+            this[MeasurementType.BMR] = Kcal(composition.bmrKcal ?: 0f)
+            this[MeasurementType.PROTEIN] = Percent(composition.proteinPct ?: 0f)
+
+            // Dual-frequency BIA outputs, contributed as device values: the S400 is the
+            // only scale in the catalogue measuring at two frequencies, and a future one
+            // reuses these identities.
+            composition.ecwPct?.let { this[EXTRACELLULAR_WATER] = Percent(it) }
+            composition.icwPct?.let { this[INTRACELLULAR_WATER] = Percent(it) }
+            composition.bcmKg?.let { this[BODY_CELL_MASS] = Kg(it) }
+        }
+
+        publish(scaleMeasurement)
+
+        return BroadcastAction.CONSUMED_STOP
+    }
+
+    private fun readBoneFormula(): BoneFormula =
+        when (settingsGetString(SETTINGS_KEY_BONE_FORMULA)) {
+            BoneFormula.HEYMSFIELD.name -> BoneFormula.HEYMSFIELD
+            else -> BoneFormula.MI_LEGACY
+        }
+
+    private fun readBmrFormula(): BmrFormula =
+        when (settingsGetString(SETTINGS_KEY_BMR_FORMULA)) {
+            BmrFormula.CUNNINGHAM_1980.name -> BmrFormula.CUNNINGHAM_1980
+            else -> BmrFormula.CUNNINGHAM_1991
+        }
+
+    /**
+     * Extract service data from the BLE scan result.
+     *
+     * The S400 sends data via Service Data (AD type 0x16) for the
+     * Body Composition Service UUID (0x181B).
+     */
+    private fun extractServiceData(result: ScanResult): ByteArray? {
+        val scanRecord = result.scanRecord ?: return null
+
+        // Try to get service data for the Body Composition Service
+        val serviceData = scanRecord.serviceData
+
+        // Check for 0x181B service data
+        serviceData?.get(SERVICE_UUID_S400)?.let { data ->
+            if (data.size >= 24) {
+                return data
+            }
+        }
+
+        // Some devices may include the service UUID in the data
+        // Try all service data entries
+        serviceData?.values?.forEach { data ->
+            if (data.size >= 24 && data.size <= 26) {
+                return data
+            }
+        }
+
+        // Fallback: check raw advertisement bytes for service data
+        val rawBytes = scanRecord.bytes
+        if (rawBytes != null && rawBytes.size >= 26) {
+            // Look for service data AD type (0x16) followed by 0x1B 0x18 (little-endian 0x181B)
+            for (i in 0 until rawBytes.size - 26) {
+                if (rawBytes[i] == 0x16.toByte() &&
+                    rawBytes[i + 1] == 0x1B.toByte() &&
+                    rawBytes[i + 2] == 0x18.toByte()) {
+                    // Found service data header, extract the data
+                    val dataStart = i + 3
+                    val remaining = rawBytes.size - dataStart
+                    if (remaining >= 24) {
+                        return rawBytes.copyOfRange(dataStart, dataStart + minOf(remaining, 26))
+                    }
+                }
+            }
+        }
+
+        return null
+    }
+}

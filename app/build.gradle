@@ -1,0 +1,41 @@
+plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' version '2.2.10' }
+
+android {
+    namespace 'de.scalebridge'
+    compileSdk { version = release(36) { minorApiLevel = 1 } }
+    defaultConfig {
+        applicationId 'de.scalebridge'
+        minSdk 31
+        targetSdk 35
+        versionCode 23
+        versionName '0.7.1'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+    // The drivers use AES-CCM only; these tables belong to the unused Picnic signature algorithm.
+    packaging { resources { excludes += ['org/bouncycastle/pqc/crypto/picnic/*.properties'] } }
+    buildTypes { release {
+        minifyEnabled true
+        shrinkResources true
+        signingConfig signingConfigs.debug
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    } }
+    testOptions { unitTests.includeAndroidResources = true }
+}
+dependencies {
+    implementation project(':scale-drivers')
+    implementation 'androidx.health.connect:connect-client:1.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.garmin:fit:21.176.0'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
+}
+def notices = tasks.register('copyThirdPartyNotices', Sync) {
+    from(rootProject.file('licenses'))
+    from(rootProject.file('LICENSE')) { rename { 'Scale2Garmin-GPL-3.0.txt' } }
+    into(layout.buildDirectory.dir('generated/notices/licenses'))
+}
+android.sourceSets.main.assets.srcDir(layout.buildDirectory.dir('generated/notices'))
+tasks.named('preBuild').configure { dependsOn(notices) }

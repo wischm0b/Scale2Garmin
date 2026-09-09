@@ -1,0 +1,15 @@
+.gradle/
+.gradle-home/
+.kotlin/
+.tools/
+build/
+app/build/
+scale-drivers/build/
+/bike-display-android/
+/esp32-bike-bridge/
+/releases/
+local.properties
+*.jks
+*.keystore
+.idea/
+*.iml

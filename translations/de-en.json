@@ -1,0 +1,1202 @@
+[
+  [
+    "Einstellungen",
+    "Settings"
+  ],
+  [
+    "Dein Verlauf",
+    "Your history"
+  ],
+  [
+    "Deine Waage",
+    "Your scale"
+  ],
+  [
+    "Darstellung",
+    "Appearance"
+  ],
+  [
+    "Wie das System",
+    "Follow system"
+  ],
+  [
+    "Dunkel",
+    "Dark"
+  ],
+  [
+    "Hell",
+    "Light"
+  ],
+  [
+    "Sprache",
+    "Language"
+  ],
+  [
+    "System",
+    "System"
+  ],
+  [
+    "Waage",
+    "Scale"
+  ],
+  [
+    "Messwert",
+    "Metric"
+  ],
+  [
+    "MESSWERT",
+    "METRIC"
+  ],
+  [
+    "ZEITRAUM",
+    "PERIOD"
+  ],
+  [
+    "Zeitraum",
+    "Period"
+  ],
+  [
+    "Farbschema",
+    "Colour scheme"
+  ],
+  [
+    "Gewicht",
+    "Weight"
+  ],
+  [
+    "Körperfett",
+    "Body fat"
+  ],
+  [
+    "Muskelanteil",
+    "Muscle percentage"
+  ],
+  [
+    "Körperwasser",
+    "Body water"
+  ],
+  [
+    "Knochenmasse",
+    "Bone mass"
+  ],
+  [
+    "Muskelmasse¹",
+    "Muscle mass¹"
+  ],
+  [
+    "Grundumsatz",
+    "Basal metabolism"
+  ],
+  [
+    "7 Tage",
+    "7 days"
+  ],
+  [
+    "30 Tage",
+    "30 days"
+  ],
+  [
+    "90 Tage",
+    "90 days"
+  ],
+  [
+    "1 Jahr",
+    "1 year"
+  ],
+  [
+    "Alles",
+    "All time"
+  ],
+  [
+    "Einstellungen öffnen",
+    "Open settings"
+  ],
+  [
+    "Zurück zum Verlauf",
+    "Back to history"
+  ],
+  [
+    "Vorherige Messung",
+    "Previous measurement"
+  ],
+  [
+    "Nächste Messung",
+    "Next measurement"
+  ],
+  [
+    "Bluetooth-Gerät auswählen",
+    "Select Bluetooth device"
+  ],
+  [
+    "Waage auswählen",
+    "Select scale"
+  ],
+  [
+    "Noch keine Waage verbunden",
+    "No scale connected yet"
+  ],
+  [
+    "Nach Waage suchen",
+    "Find scale"
+  ],
+  [
+    "Speicherplatz",
+    "User slot"
+  ],
+  [
+    "Speicherplatz ",
+    "User slot "
+  ],
+  [
+    "Bitte auswählen",
+    "Please select"
+  ],
+  [
+    "Dein Speicherplatz auf der Waage",
+    "Your user slot on the scale"
+  ],
+  [
+    "Empfang durch Herunterziehen der Übersicht oder ↻ · Pause nach spätestens 90 Sekunden.",
+    "Pull down on the overview or tap ↻ to receive · Stops after at most 90 seconds."
+  ],
+  [
+    "Suchen und anschließend im Dropdown auswählen.",
+    "Scan, then select from the dropdown."
+  ],
+  [
+    " Geräte gefunden · ",
+    " devices found · "
+  ],
+  [
+    " Waagen-Kandidat(en) zuerst",
+    " scale candidates first"
+  ],
+  [
+    " · Waage",
+    " · Scale"
+  ],
+  [
+    "Waage einrichten",
+    "Set up scale"
+  ],
+  [
+    "Bluetooth-Zugriff erlauben",
+    "Allow Bluetooth access"
+  ],
+  [
+    "Bluetooth-Zugriff fehlt",
+    "Bluetooth permission needed"
+  ],
+  [
+    "Bluetooth-Zugriff wird zum Verbinden benötigt.",
+    "Bluetooth access is required to connect."
+  ],
+  [
+    "Bluetooth und Berechtigungen prüfen.",
+    "Check Bluetooth and permissions."
+  ],
+  [
+    "Empfang aktiv",
+    "Receiving"
+  ],
+  [
+    "Übertragung läuft",
+    "Uploading"
+  ],
+  [
+    "Verbindung erneut versuchen",
+    "Retry connection"
+  ],
+  [
+    "Waage unter ⚙ einrichten",
+    "Set up your scale under ⚙"
+  ],
+  [
+    "Gewicht empfangen · Körperanalyse folgt …",
+    "Weight received · waiting for body composition …"
+  ],
+  [
+    "Messung wird an Garmin übertragen …",
+    "Uploading measurement to Garmin …"
+  ],
+  [
+    "Letzten Upload prüfen · Details am Messpunkt",
+    "Check last upload · tap measurement for details"
+  ],
+  [
+    "Letzte Messung synchronisiert · ",
+    "Measurement synced · "
+  ],
+  [
+    "Messung gespeichert · Upload ausstehend",
+    "Measurement saved · upload pending"
+  ],
+  [
+    "Messung gespeichert · zum Übertragen auf Garmin tippen",
+    "Measurement saved · tap Garmin to upload"
+  ],
+  [
+    "Empfang aktiv · bereit zum Wiegen",
+    "Receiving · ready to weigh"
+  ],
+  [
+    "Empfang pausiert · zum Start nach unten ziehen",
+    "Paused · pull down to start"
+  ],
+  [
+    "Letzte Messung von Garmin bestätigt",
+    "Current measurement confirmed by Garmin"
+  ],
+  [
+    "Garmin: jetzt synchronisieren",
+    "Garmin: sync now"
+  ],
+  [
+    "Messwerte erscheinen nach dem nächsten Wiegen.",
+    "Measurements will appear after your next weigh-in."
+  ],
+  [
+    " Messungen · dichte Punkte als Durchschnitt",
+    " measurements · close points shown as averages"
+  ],
+  [
+    " Messungen zusammengefasst · Einzelwert unten",
+    " measurements averaged · individual value below"
+  ],
+  [
+    "%+.1f %s zum vorherigen Messpunkt",
+    "%+.1f %s from previous measurement"
+  ],
+  [
+    "¹ Aus Gewicht und Muskelanteil berechnet.",
+    "¹ Calculated from weight and muscle percentage."
+  ],
+  [
+    "Muskelmasse¹ ",
+    "Muscle mass¹ "
+  ],
+  [
+    " · aus dem Anteil berechnet",
+    " · calculated from percentage"
+  ],
+  [
+    "✓ In Garmin",
+    "✓ In Garmin"
+  ],
+  [
+    "Wird übertragen …",
+    "Uploading …"
+  ],
+  [
+    "! Übertragung prüfen",
+    "! Check upload"
+  ],
+  [
+    "✓ In Scale2Garmin gespeichert",
+    "✓ Saved in Scale2Garmin"
+  ],
+  [
+    " · Speicherplatz ",
+    " · User slot "
+  ],
+  [
+    "Upload prüfen",
+    "Check upload"
+  ],
+  [
+    "Ist die Messung in Garmin vorhanden?",
+    "Is this measurement in Garmin?"
+  ],
+  [
+    "Prüfe Gewicht und Zeitpunkt in Garmin Connect, bevor du einen erneuten Upload freigibst.",
+    "Check the weight and time in Garmin Connect before allowing another upload."
+  ],
+  [
+    "Bereits vorhanden",
+    "Already there"
+  ],
+  [
+    "Manuell in Garmin bestätigt",
+    "Manually confirmed in Garmin"
+  ],
+  [
+    "Nicht vorhanden",
+    "Not there"
+  ],
+  [
+    "Später",
+    "Later"
+  ],
+  [
+    "Angemeldet · Sitzung verschlüsselt gespeichert",
+    "Signed in · session stored encrypted"
+  ],
+  [
+    "Noch nicht verbunden",
+    "Not connected yet"
+  ],
+  [
+    "Bei Garmin anmelden",
+    "Sign in to Garmin"
+  ],
+  [
+    "Alternative Browser-Anmeldung",
+    "Sign in with browser"
+  ],
+  [
+    "Jetzt synchronisieren",
+    "Sync now"
+  ],
+  [
+    "Konto / Anmeldung",
+    "Account / sign-in"
+  ],
+  [
+    "Garmin-Verbindung",
+    "Garmin connection"
+  ],
+  [
+    "Erneut anmelden",
+    "Sign in again"
+  ],
+  [
+    "Browser-Anmeldung",
+    "Browser sign-in"
+  ],
+  [
+    "Verbindung trennen",
+    "Disconnect account"
+  ],
+  [
+    "Abbrechen",
+    "Cancel"
+  ],
+  [
+    "Automatisch zu Garmin übertragen",
+    "Automatically upload to Garmin"
+  ],
+  [
+    "Bitte Speicherplatz auswählen und Garmin verbinden.",
+    "Please select a user slot and connect Garmin."
+  ],
+  [
+    "Berechnete Muskelmasse übertragen",
+    "Upload calculated muscle mass"
+  ],
+  [
+    "Muskelmasse = Gewicht × Muskelanteil ÷ 100. Der originale Prozentwert bleibt erhalten.",
+    "Muscle mass = weight × muscle percentage ÷ 100. The original percentage is retained."
+  ],
+  [
+    "Scale2Garmin 0.3 · Daten nur auf deinem Gerät und bei Garmin.",
+    "Scale2Garmin 0.3 · Data stays on your device and with Garmin."
+  ],
+  [
+    "Bitte Garmin in den Einstellungen verbinden.",
+    "Please connect Garmin in Settings."
+  ],
+  [
+    "Bitte deinen Speicherplatz auswählen.",
+    "Please select your user slot."
+  ],
+  [
+    "Alle Messungen sind übertragen oder warten auf Prüfung.",
+    "All measurements are uploaded or awaiting review."
+  ],
+  [
+    "An Garmin übertragen?",
+    "Upload to Garmin?"
+  ],
+  [
+    " Messung(en) von Speicherplatz ",
+    " measurements from user slot "
+  ],
+  [
+    " werden an dein verbundenes Garmin-Konto gesendet.",
+    " will be sent to your connected Garmin account."
+  ],
+  [
+    "Übertragen",
+    "Upload"
+  ],
+  [
+    "Garmin-E-Mail",
+    "Garmin email"
+  ],
+  [
+    "Passwort",
+    "Password"
+  ],
+  [
+    "Garmin-Anmeldung",
+    "Garmin sign-in"
+  ],
+  [
+    "Anmelden",
+    "Sign in"
+  ],
+  [
+    "Anmeldung läuft …",
+    "Signing in …"
+  ],
+  [
+    "Garmin-Anmeldung erfolgreich.",
+    "Signed in to Garmin."
+  ],
+  [
+    "Bestätigungscode",
+    "Verification code"
+  ],
+  [
+    "Garmin-Bestätigung",
+    "Garmin verification"
+  ],
+  [
+    "Gib den von Garmin angeforderten Code ein.",
+    "Enter the verification code requested by Garmin."
+  ],
+  [
+    "Bestätigen",
+    "Confirm"
+  ],
+  [
+    "Weitere Bestätigung erforderlich. Bitte erneut anmelden.",
+    "Additional verification required. Please sign in again."
+  ],
+  [
+    "Anmeldung bei Garmin",
+    "Sign in to Garmin"
+  ],
+  [
+    "Schließen",
+    "Close"
+  ],
+  [
+    "Garmin-Sitzung wird eingerichtet …",
+    "Setting up Garmin session …"
+  ],
+  [
+    "Garmin-Zertifikat konnte nicht geprüft werden.",
+    "Could not verify Garmin certificate."
+  ],
+  [
+    "Waagenprofil",
+    "Scale profile"
+  ],
+  [
+    "Waagenspezifische Einstellungen",
+    "Scale-specific settings"
+  ],
+  [
+    "Diese Angaben verwendet der Waagentreiber für Benutzerzuordnung und Körperanalyse.",
+    "The scale driver uses these details for user identification and body composition."
+  ],
+  [
+    "Name",
+    "Name"
+  ],
+  [
+    "Geburtsdatum (JJJJ-MM-TT)",
+    "Date of birth (YYYY-MM-DD)"
+  ],
+  [
+    "Größe in cm",
+    "Height in cm"
+  ],
+  [
+    "Männlich",
+    "Male"
+  ],
+  [
+    "Weiblich",
+    "Female"
+  ],
+  [
+    "Geschlecht",
+    "Sex"
+  ],
+  [
+    "Wenig aktiv",
+    "Sedentary"
+  ],
+  [
+    "Leicht aktiv",
+    "Lightly active"
+  ],
+  [
+    "Mäßig aktiv",
+    "Moderately active"
+  ],
+  [
+    "Sehr aktiv",
+    "Very active"
+  ],
+  [
+    "Extrem aktiv",
+    "Extremely active"
+  ],
+  [
+    "Aktivität",
+    "Activity"
+  ],
+  [
+    "Speichern",
+    "Save"
+  ],
+  [
+    "Bitte Geburtsdatum und Größe prüfen.",
+    "Please check your date of birth and height."
+  ],
+  [
+    "Bind-Key (32 Hex-Zeichen)",
+    "Bind key (32 hex characters)"
+  ],
+  [
+    "MAC-Adresse (optional)",
+    "MAC address (optional)"
+  ],
+  [
+    "Für dieses Modell sind keine zusätzlichen Schlüssel erforderlich. Benutzerabfragen erscheinen beim Verbinden.",
+    "This model needs no additional keys. User prompts appear when connecting."
+  ],
+  [
+    "Waage bestätigen",
+    "Verify scale"
+  ],
+  [
+    "Speicherplatz auf der Waage",
+    "User slot on scale"
+  ],
+  [
+    "Keine Messung empfangen · zum Neustart nach unten ziehen",
+    "No measurement received · pull down to restart"
+  ],
+  [
+    "Empfang abgeschlossen · zum Neustart nach unten ziehen",
+    "Reception complete · pull down to restart"
+  ],
+  [
+    "Empfang beendet",
+    "Reception stopped"
+  ],
+  [
+    "Beenden",
+    "Stop"
+  ],
+  [
+    "Waagenverbindung",
+    "Scale connection"
+  ],
+  [
+    "Bereit für deine BS444",
+    "Ready for your scale"
+  ],
+  [
+    "Bitte Bluetooth einschalten und erneut starten.",
+    "Please enable Bluetooth and try again."
+  ],
+  [
+    "Bitte zuerst eine Waage auswählen.",
+    "Please select a scale first."
+  ],
+  [
+    "Bluetooth ist ausgeschaltet. Empfang erneut starten.",
+    "Bluetooth is off. Restart reception."
+  ],
+  [
+    "Suche läuft. Waage kurz aktivieren oder daraufstellen.",
+    "Scanning. Wake the scale or step on it."
+  ],
+  [
+    "Warte auf die BS444. Zum Wiegen barfuß aufstellen.",
+    "Waiting for the scale. Step on barefoot to weigh."
+  ],
+  [
+    "Suche beendet. Waage im Dropdown auswählen.",
+    "Scan finished. Select your scale from the dropdown."
+  ],
+  [
+    "Bluetooth-Zugriff fehlt. Berechtigungen prüfen.",
+    "Bluetooth access missing. Check permissions."
+  ],
+  [
+    "Bluetooth-Suche fehlgeschlagen (",
+    "Bluetooth scan failed ("
+  ],
+  [
+    "). Bitte Empfang erneut starten.",
+    "). Please restart reception."
+  ],
+  [
+    "Unbenanntes Bluetooth-Gerät",
+    "Unnamed Bluetooth device"
+  ],
+  [
+    "Verbinde mit der Waage …",
+    "Connecting to scale …"
+  ],
+  [
+    "Verbunden · bereit zum Wiegen",
+    "Connected · ready to weigh"
+  ],
+  [
+    "Empfang beendet · zum Neustart nach unten ziehen",
+    "Reception ended · pull down to restart"
+  ],
+  [
+    "Bitte zuerst dein Waagenprofil in den Einstellungen vervollständigen.",
+    "Please complete your scale profile in Settings first."
+  ],
+  [
+    "Verbinde mit der BS444 …",
+    "Connecting to scale …"
+  ],
+  [
+    "Waage antwortet nicht. Neuer Verbindungsversuch …",
+    "Scale is not responding. Retrying …"
+  ],
+  [
+    "Waage getrennt. Warte auf die nächste Messung.",
+    "Scale disconnected. Waiting for a measurement."
+  ],
+  [
+    "Kein BS444-Dienst gefunden. Modell und ausgewählte Waage prüfen.",
+    "No BS44x service found. Check the model and selected scale."
+  ],
+  [
+    "Benötigter Messkanal fehlt.",
+    "Required measurement channel is missing."
+  ],
+  [
+    "Messkanal konnte nicht aktiviert werden.",
+    "Could not enable measurement channel."
+  ],
+  [
+    "Waage konnte nicht vorbereitet werden.",
+    "Could not prepare scale."
+  ],
+  [
+    "Verbunden · bereit für eine vollständige Körperanalyse.",
+    "Connected · ready for body composition."
+  ],
+  [
+    "Steuerkanal fehlt.",
+    "Control channel is missing."
+  ],
+  [
+    "Bluetooth-Vorgang konnte nicht gestartet werden.",
+    "Could not start Bluetooth operation."
+  ],
+  [
+    "Gewicht empfangen · warte auf Körperanalyse …",
+    "Weight received · waiting for body composition …"
+  ],
+  [
+    "Messung gespeichert · Speicherplatz ",
+    "Measurement saved · user slot "
+  ],
+  [
+    "Messung bereits gespeichert.",
+    "Measurement already saved."
+  ],
+  [
+    "Bitte zuerst deinen Speicherplatz auf der Waage auswählen.",
+    "Please select your scale user slot first."
+  ],
+  [
+    "Garmin-Pause aktiv. Später erneut versuchen.",
+    "Garmin cooldown active. Please try again later."
+  ],
+  [
+    "Keine neuen Messungen für Speicherplatz ",
+    "No new measurements for user slot "
+  ],
+  [
+    "Garmin-Verbindung wird geprüft …",
+    "Checking Garmin connection …"
+  ],
+  [
+    "Unplausibles Messdatum. Uhrzeit der Waage prüfen.",
+    "Invalid measurement date. Check the scale clock."
+  ],
+  [
+    "Messung von Garmin bestätigt.",
+    "Measurement confirmed by Garmin."
+  ],
+  [
+    "Ergebnis unklar. Vor erneutem Upload in Garmin prüfen.",
+    "Uncertain result. Check Garmin before uploading again."
+  ],
+  [
+    " Messung(en) von Garmin bestätigt.",
+    " measurements confirmed by Garmin."
+  ],
+  [
+    "Keine Messpunkte",
+    "No measurements"
+  ],
+  [
+    "Noch keine Werte in diesem Zeitraum",
+    "No measurements in this period"
+  ],
+  [
+    "-Diagramm mit ",
+    " chart with "
+  ],
+  [
+    " Messpunkten. Punkt antippen oder die Pfeile unter dem Diagramm verwenden.",
+    " measurements. Tap a point or use the arrows below the chart."
+  ],
+  [
+    "Garmin begrenzt Anfragen. Frühestens in 30 Minuten erneut versuchen.",
+    "Garmin is rate-limiting requests. Try again in at least 30 minutes."
+  ],
+  [
+    "Unzulässiges Verbindungsziel",
+    "Connection destination not allowed"
+  ],
+  [
+    "Antwort zu groß",
+    "Response too large"
+  ],
+  [
+    "Bitte die Anmeldepause abwarten (mindestens eine Minute, bei HTTP 429 dreißig Minuten).",
+    "Wait before signing in again (at least one minute, or 30 minutes after HTTP 429)."
+  ],
+  [
+    "Garmin hat die Anmeldung nicht bestätigt. Zugangsdaten oder Anmeldung im Browser prüfen.",
+    "Garmin did not confirm sign-in. Check your credentials or try browser sign-in."
+  ],
+  [
+    "Ungültiges Anmeldeticket",
+    "Invalid sign-in ticket"
+  ],
+  [
+    "Garmin hat keine Sitzung ausgestellt",
+    "Garmin did not issue a session"
+  ],
+  [
+    "Bitte zuerst bei Garmin anmelden",
+    "Please sign in to Garmin first"
+  ],
+  [
+    "Keine Garmin-Sitzung",
+    "No Garmin session"
+  ],
+  [
+    "Garmin hat den Import nicht eindeutig bestätigt. Bitte dort prüfen.",
+    "Garmin did not clearly confirm the import. Please check Garmin."
+  ],
+  [
+    "Ungültige Uhrzeit",
+    "Invalid time"
+  ],
+  [
+    "Gewichtspaket zu kurz",
+    "Weight packet too short"
+  ],
+  [
+    "Bitte die Waage auf kg einstellen",
+    "Please set the scale to kg"
+  ],
+  [
+    "Körperanalysepaket zu kurz",
+    "Body composition packet too short"
+  ],
+  [
+    "Gewicht außerhalb des gültigen Bereichs",
+    "Weight outside the valid range"
+  ],
+  [
+    "Upload unterbrochen. Bitte zuerst in Garmin prüfen.",
+    "Upload interrupted. Please check Garmin first."
+  ],
+  [
+    "Sitzung konnte nicht gespeichert werden",
+    "Could not save session"
+  ],
+  [
+    "Garmin-Anmeldung abgelaufen oder Zugriff abgelehnt (",
+    "Garmin sign-in expired or access denied ("
+  ],
+  [
+    "Garmin antwortet mit HTTP ",
+    "Garmin responded with HTTP "
+  ],
+  [
+    "Vorgang fehlgeschlagen (",
+    "Operation failed ("
+  ],
+  [
+    "). Bitte erneut anmelden oder Verbindung prüfen.",
+    "). Please sign in again or check your connection."
+  ],
+  [
+    "Anmeldung und Verbindung verwalten",
+    "Manage your sign-in and connection"
+  ],
+  [
+    "Mit E-Mail und Passwort anmelden",
+    "Sign in with email and password"
+  ],
+  [
+    "Garmin-Anmeldeseite öffnen",
+    "Open the Garmin sign-in page"
+  ],
+  [
+    "Gespeicherte Anmeldung entfernen",
+    "Remove saved sign-in"
+  ],
+  [
+    "Überträgt vorhandene und neue Messungen deines ausgewählten Speicherplatzes. Unabhängig von Garmin.",
+    "Syncs existing and new measurements for your selected scale user. Independently of Garmin."
+  ],
+  [
+    "Mit Health Connect synchronisieren",
+    "Sync with Health Connect"
+  ],
+  [
+    "Jetzt zu Health Connect synchronisieren",
+    "Sync to Health Connect now"
+  ],
+  [
+    "Berechtigungen verwalten",
+    "Manage permissions"
+  ],
+  [
+    "Datennutzung und Datenschutz",
+    "Data use and privacy"
+  ],
+  [
+    "Bitte zuerst deinen Speicherplatz auswählen.",
+    "Please select your scale user first."
+  ],
+  [
+    "Health Connect öffnen",
+    "Open Health Connect"
+  ],
+  [
+    "Health Connect ist auf diesem Gerät nicht verfügbar.",
+    "Health Connect is not available on this device."
+  ],
+  [
+    "Health Connect ist nicht verfügbar. Bitte installieren oder aktualisieren.",
+    "Health Connect is unavailable. Please install or update it."
+  ],
+  [
+    "Health Connect benötigt eine Schreibberechtigung.",
+    "Health Connect needs write permission."
+  ],
+  [
+    "Übertragung zu Health Connect …",
+    "Syncing to Health Connect …"
+  ],
+  [
+    "Health Connect ist auf dem aktuellen Stand.",
+    "Health Connect is up to date."
+  ],
+  [
+    "Health Connect ist aktuell. Es werden nur freigegebene Messwerte übertragen.",
+    "Health Connect is up to date. Only permitted metrics are synced."
+  ],
+  [
+    "Ein Messwert konnte nicht übertragen werden. Bitte die Messdaten prüfen.",
+    "A measurement could not be synced. Please check the recorded values."
+  ],
+  [
+    "Health Connect ist vorübergehend nicht erreichbar. Die Übertragung wird wiederholt.",
+    "Health Connect is temporarily unavailable. Sync will be retried."
+  ],
+  [
+    "Scale2Garmin schreibt auf Wunsch die gespeicherten Waagenmessungen des ausgewählten Speicherplatzes in Health Connect: Gewicht, Körperfett, Knochenmasse, aus Gewicht und Wasseranteil berechnete Körperwassermasse sowie Grundumsatz. Muskelanteil wird nicht übertragen. Es werden keine Daten aus Health Connect gelesen. Die Daten bleiben dort auf deinem Gerät; andere Apps erhalten Zugriff nur nach deiner Freigabe in Health Connect. Die Garmin-Übertragung wird separat gesteuert. Du kannst die Synchronisation in Scale2Garmin ausschalten und Berechtigungen oder bereits exportierte Daten in Health Connect verwalten. Ausschalten löscht keine bisherigen Einträge.",
+    "Scale2Garmin can write stored scale measurements for the selected scale user to Health Connect: weight, body fat, bone mass, body water mass calculated from weight and water percentage, and basal metabolic rate. Muscle percentage is not exported. No data is read from Health Connect. Data stays on your device; other apps can access it only with your permission in Health Connect. Garmin sync is controlled separately. You can turn off sync in Scale2Garmin and manage permissions or previously exported data in Health Connect. Turning sync off does not delete existing entries."
+  ],
+  [
+    "Diagramm: Mit zwei Fingern zoomen oder verschieben. Messpunkt antippen für Details.",
+    "Chart: use two fingers to zoom or pan. Tap a point for details."
+  ],
+  [
+    "Keine Messwerte in diesem Ausschnitt",
+    "No measurements in this time window"
+  ],
+  [
+    "Kurven auswählen",
+    "Select curves"
+  ],
+  [
+    "Zeitausschnitt zurücksetzen",
+    "Reset time window"
+  ],
+  [
+    "Jede Kurve hat eine eigene Skala; die Zeitachse ist gemeinsam.",
+    "Each curve has its own scale; all curves share the time axis."
+  ],
+  [
+    "Messwerte auswählen",
+    "Select metrics"
+  ],
+  [
+    "Bitte mindestens einen Messwert auswählen.",
+    "Please select at least one metric."
+  ],
+  [
+    "Zum Empfangen nach unten ziehen oder auf ↻ tippen.",
+    "Pull down or tap ↻ to start receiving."
+  ],
+  [
+    "Gewicht in kg · Körperanteile in %",
+    "Weight in kg · Body composition in %"
+  ],
+  [
+    "Auswahl einklappen",
+    "Collapse selection"
+  ],
+  [
+    "Name: nur diese Kurve · Häkchen: mehrere",
+    "Name: only this curve · Checkboxes: multiple"
+  ],
+  [
+    "Zeitstempel prüfen",
+    "Check timestamps"
+  ],
+  [
+    "Noch keine Empfangsdaten vorhanden.",
+    "No reception data yet."
+  ],
+  [
+    "Kopieren",
+    "Copy"
+  ],
+  [
+    "Schließen",
+    "Close"
+  ],
+  [
+    "CSV-Sicherung",
+    "CSV backup"
+  ],
+  [
+    "Speichert alle Messungen als lesbare CSV-Datei an einem frei gewählten Ort.",
+    "Saves all measurements as a readable CSV file in a location you choose."
+  ],
+  [
+    "CSV-Backup speichern",
+    "Save CSV backup"
+  ],
+  [
+    "CSV importieren",
+    "Import CSV"
+  ],
+  [
+    "Backups von Scale2Garmin können bereits importiert werden. Für VitaDock+ wird das genaue Exportformat benötigt.",
+    "Scale2Garmin backups can already be imported. The exact VitaDock+ export format is required for VitaDock+ files."
+  ],
+  [
+    " Messungen gespeichert.",
+    " measurements saved."
+  ],
+  [
+    "Backup konnte nicht gespeichert werden: ",
+    "Could not save backup: "
+  ],
+  [
+    " Messungen importiert · ",
+    " measurements imported · "
+  ],
+  [
+    " Duplikate übersprungen.",
+    " duplicates skipped."
+  ],
+  [
+    "CSV konnte nicht importiert werden",
+    "CSV could not be imported"
+  ],
+  [
+    "Importiert Scale2Garmin-Backups und VitaDock+-Gewichtsexporte.",
+    "Imports Scale2Garmin backups and VitaDock+ weight exports."
+  ],
+  [
+    "Datei wird importiert …",
+    "Importing file …"
+  ],
+  [
+    "Keine Datei ausgewählt.",
+    "No file selected."
+  ],
+  [
+    "Datei auswählen …",
+    "Select a file …"
+  ],
+  [
+    "Import fehlgeschlagen: ",
+    "Import failed: "
+  ],
+  [
+    "Trends & Prognosen",
+    "Trends & forecasts"
+  ],
+  [
+    "Trend",
+    "Trend"
+  ],
+  [
+    "stabil",
+    "stable"
+  ],
+  [
+    "Woche",
+    "week"
+  ],
+  [
+    "Tage",
+    "days"
+  ],
+  [
+    "hohe Verlässlichkeit",
+    "high reliability"
+  ],
+  [
+    "mittlere Verlässlichkeit",
+    "medium reliability"
+  ],
+  [
+    "geringe Verlässlichkeit",
+    "low reliability"
+  ],
+  [
+    "Mehr Daten nötig",
+    "More data needed"
+  ],
+  [
+    "Für Trends werden Messungen an mindestens drei Tagen benötigt.",
+    "Measurements on at least three days are needed for trends."
+  ],
+  [
+    "Gestrichelte Linien zeigen den robusten Trend. Prognosen sind Schätzungen aus den letzten 90 Tagen.",
+    "Dashed lines show the robust trend. Forecasts are estimates based on the last 90 days."
+  ],
+  [
+    "Wunschgewicht",
+    "Target weight"
+  ],
+  [
+    "Wunschgewicht festlegen",
+    "Set target weight"
+  ],
+  [
+    "Noch etwa ",
+    "About "
+  ],
+  [
+    "voraussichtlich ",
+    "estimated "
+  ],
+  [
+    "Wunschgewicht erreicht.",
+    "Target weight reached."
+  ],
+  [
+    "Der aktuelle Trend ist zu stabil für eine belastbare Zeitangabe.",
+    "The current trend is too stable for a reliable time estimate."
+  ],
+  [
+    "Der aktuelle Trend führt momentan vom Wunschgewicht weg.",
+    "The current trend is currently moving away from the target weight."
+  ],
+  [
+    "Beim aktuellen Tempo liegt das Ziel mehr als zehn Jahre entfernt.",
+    "At the current pace, the target is more than ten years away."
+  ],
+  [
+    "Für die Zeitschätzung werden mindestens fünf Messtage über zwei Wochen benötigt.",
+    "The time estimate needs at least five measurement days across two weeks."
+  ],
+  [
+    "Wochen",
+    "weeks"
+  ],
+  [
+    "Monate",
+    "months"
+  ],
+  [
+    "Die Restdauer wird aus deinem robusten Gewichtstrend geschätzt.",
+    "The remaining time is estimated from your robust weight trend."
+  ],
+  [
+    "Wunschgewicht in kg",
+    "Target weight in kg"
+  ],
+  [
+    "Übernehmen",
+    "Apply"
+  ],
+  [
+    "Ziel entfernen",
+    "Remove target"
+  ],
+  [
+    "Bitte ein Gewicht zwischen 1 und 300 kg eingeben.",
+    "Enter a weight between 1 and 300 kg."
+  ],
+  [
+    "Automatische Sicherung",
+    "Automatic backup"
+  ],
+  [
+    "Erstellt nach neuen Messungen und einmal täglich eine vollständige, wieder importierbare CSV-Datei.",
+    "Creates a complete, restorable CSV file after new measurements and once a day."
+  ],
+  [
+    "Zielordner auswählen",
+    "Select destination folder"
+  ],
+  [
+    "Zielordner ändern",
+    "Change destination folder"
+  ],
+  [
+    "Kein Zielordner ausgewählt.",
+    "No destination folder selected."
+  ],
+  [
+    "Ziel: ",
+    "Destination: "
+  ],
+  [
+    "Nach neuen Messungen automatisch sichern",
+    "Automatically back up after new measurements"
+  ],
+  [
+    "Zielordner ausgewählt.",
+    "Destination folder selected."
+  ],
+  [
+    "Zielordner konnte nicht gespeichert werden: ",
+    "Could not save destination folder: "
+  ],
+  [
+    " Messungen automatisch gesichert.",
+    " measurements backed up automatically."
+  ],
+  [
+    "Automatische Sicherung fehlgeschlagen: ",
+    "Automatic backup failed: "
+  ],
+  [
+    "Der ausgewählte Ordner erlaubt keinen Schreibzugriff.",
+    "The selected folder does not allow write access."
+  ],
+  [
+    "Erstellt nach jeder neuen Messung eine vollständige, wieder importierbare CSV-Datei und überschreibt die vorherige Sicherung.",
+    "Creates a complete, restorable CSV file after each new measurement and overwrites the previous backup."
+  ],
+  [
+    "Für jeden Tag eine eigene Sicherungsdatei",
+    "Keep a separate backup file for each day"
+  ],
+  [
+    "Optional: behält Tagesstände im Format Scale2Garmin-Backup-JJJJ-MM-TT.csv, jeweils aktualisiert nach neuen Messungen.",
+    "Optional: keeps daily snapshots named Scale2Garmin-Backup-YYYY-MM-DD.csv, updated after new measurements."
+  ]
+]

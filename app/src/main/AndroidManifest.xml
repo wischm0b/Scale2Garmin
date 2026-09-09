@@ -1,0 +1,34 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission android:name="de.scalebridge.INTERNAL" android:protectionLevel="signature" />
+    <uses-permission android:name="de.scalebridge.INTERNAL" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.health.WRITE_WEIGHT" />
+    <uses-permission android:name="android.permission.health.WRITE_BODY_FAT" />
+    <uses-permission android:name="android.permission.health.WRITE_BODY_WATER_MASS" />
+    <uses-permission android:name="android.permission.health.WRITE_BONE_MASS" />
+    <uses-permission android:name="android.permission.health.WRITE_BASAL_METABOLIC_RATE" />
+    <queries><package android:name="com.google.android.apps.healthdata" /></queries>
+    <application android:label="Scale2Garmin" android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher" android:allowBackup="false" android:dataExtractionRules="@xml/data_extraction_rules" android:usesCleartextTraffic="false" android:supportsRtl="true">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <service android:name=".ScaleService" android:exported="false" android:foregroundServiceType="connectedDevice" />
+        <service android:name=".UploadJob" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".HealthJob" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name=".BackupJob" android:exported="true" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <activity android:name=".HealthPrivacyActivity" android:exported="true">
+            <intent-filter><action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" /></intent-filter>
+        </activity>
+        <activity-alias android:name=".HealthPermissionUsage" android:exported="true" android:targetActivity=".HealthPrivacyActivity" android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter><action android:name="android.intent.action.VIEW_PERMISSION_USAGE" /><category android:name="android.intent.category.HEALTH_PERMISSIONS" /></intent-filter>
+        </activity-alias>
+    </application>
+</manifest>

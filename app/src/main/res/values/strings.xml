@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="ui_0" formatted="false">"Settings"</string>
+    <string name="ui_1" formatted="false">"Your history"</string>
+    <string name="ui_2" formatted="false">"Your scale"</string>
+    <string name="ui_3" formatted="false">"Appearance"</string>
+    <string name="ui_4" formatted="false">"Follow system"</string>
+    <string name="ui_5" formatted="false">"Dark"</string>
+    <string name="ui_6" formatted="false">"Light"</string>
+    <string name="ui_7" formatted="false">"Language"</string>
+    <string name="ui_8" formatted="false">"System"</string>
+    <string name="ui_9" formatted="false">"Scale"</string>
+    <string name="ui_10" formatted="false">"Metric"</string>
+    <string name="ui_11" formatted="false">"METRIC"</string>
+    <string name="ui_12" formatted="false">"PERIOD"</string>
+    <string name="ui_13" formatted="false">"Period"</string>
+    <string name="ui_14" formatted="false">"Colour scheme"</string>
+    <string name="ui_15" formatted="false">"Weight"</string>
+    <string name="ui_16" formatted="false">"Body fat"</string>
+    <string name="ui_17" formatted="false">"Muscle percentage"</string>
+    <string name="ui_18" formatted="false">"Body water"</string>
+    <string name="ui_19" formatted="false">"Bone mass"</string>
+    <string name="ui_20" formatted="false">"Muscle mass¹"</string>
+    <string name="ui_21" formatted="false">"Basal metabolism"</string>
+    <string name="ui_22" formatted="false">"7 days"</string>
+    <string name="ui_23" formatted="false">"30 days"</string>
+    <string name="ui_24" formatted="false">"90 days"</string>
+    <string name="ui_25" formatted="false">"1 year"</string>
+    <string name="ui_26" formatted="false">"All time"</string>
+    <string name="ui_27" formatted="false">"Open settings"</string>
+    <string name="ui_28" formatted="false">"Back to history"</string>
+    <string name="ui_29" formatted="false">"Previous measurement"</string>
+    <string name="ui_30" formatted="false">"Next measurement"</string>
+    <string name="ui_31" formatted="false">"Select Bluetooth device"</string>
+    <string name="ui_32" formatted="false">"Select scale"</string>
+    <string name="ui_33" formatted="false">"No scale connected yet"</string>
+    <string name="ui_34" formatted="false">"Find scale"</string>
+    <string name="ui_35" formatted="false">"User slot"</string>
+    <string name="ui_36" formatted="false">"User slot "</string>
+    <string name="ui_37" formatted="false">"Please select"</string>
+    <string name="ui_38" formatted="false">"Your user slot on the scale"</string>
+    <string name="ui_39" formatted="false">"Pull down on the overview or tap ↻ to receive · Stops after at most 90 seconds."</string>
+    <string name="ui_40" formatted="false">"Scan, then select from the dropdown."</string>
+    <string name="ui_41" formatted="false">" devices found · "</string>
+    <string name="ui_42" formatted="false">" scale candidates first"</string>
+    <string name="ui_43" formatted="false">" · Scale"</string>
+    <string name="ui_44" formatted="false">"Set up scale"</string>
+    <string name="ui_45" formatted="false">"Allow Bluetooth access"</string>
+    <string name="ui_46" formatted="false">"Bluetooth permission needed"</string>
+    <string name="ui_47" formatted="false">"Bluetooth access is required to connect."</string>
+    <string name="ui_48" formatted="false">"Check Bluetooth and permissions."</string>
+    <string name="ui_49" formatted="false">"Receiving"</string>
+    <string name="ui_50" formatted="false">"Uploading"</string>
+    <string name="ui_51" formatted="false">"Retry connection"</string>
+    <string name="ui_52" formatted="false">"Set up your scale under ⚙"</string>
+    <string name="ui_53" formatted="false">"Weight received · waiting for body composition …"</string>
+    <string name="ui_54" formatted="false">"Uploading measurement to Garmin …"</string>
+    <string name="ui_55" formatted="false">"Check last upload · tap measurement for details"</string>
+    <string name="ui_56" formatted="false">"Measurement synced · "</string>
+    <string name="ui_57" formatted="false">"Measurement saved · upload pending"</string>
+    <string name="ui_58" formatted="false">"Measurement saved · tap Garmin to upload"</string>
+    <string name="ui_59" formatted="false">"Receiving · ready to weigh"</string>
+    <string name="ui_60" formatted="false">"Paused · pull down to start"</string>
+    <string name="ui_61" formatted="false">"Current measurement confirmed by Garmin"</string>
+    <string name="ui_62" formatted="false">"Garmin: sync now"</string>
+    <string name="ui_63" formatted="false">"Measurements will appear after your next weigh-in."</string>
+    <string name="ui_64" formatted="false">" measurements · close points shown as averages"</string>
+    <string name="ui_65" formatted="false">" measurements averaged · individual value below"</string>
+    <string name="ui_66" formatted="false">"%+.1f %s from previous measurement"</string>
+    <string name="ui_67" formatted="false">"¹ Calculated from weight and muscle percentage."</string>
+    <string name="ui_68" formatted="false">"Muscle mass¹ "</string>
+    <string name="ui_69" formatted="false">" · calculated from percentage"</string>
+    <string name="ui_70" formatted="false">"✓ In Garmin"</string>
+    <string name="ui_71" formatted="false">"Uploading …"</string>
+    <string name="ui_72" formatted="false">"! Check upload"</string>
+    <string name="ui_73" formatted="false">"✓ Saved in Scale2Garmin"</string>
+    <string name="ui_74" formatted="false">" · User slot "</string>
+    <string name="ui_75" formatted="false">"Check upload"</string>
+    <string name="ui_76" formatted="false">"Is this measurement in Garmin?"</string>
+    <string name="ui_77" formatted="false">"Check the weight and time in Garmin Connect before allowing another upload."</string>
+    <string name="ui_78" formatted="false">"Already there"</string>
+    <string name="ui_79" formatted="false">"Manually confirmed in Garmin"</string>
+    <string name="ui_80" formatted="false">"Not there"</string>
+    <string name="ui_81" formatted="false">"Later"</string>
+    <string name="ui_82" formatted="false">"Signed in · session stored encrypted"</string>
+    <string name="ui_83" formatted="false">"Not connected yet"</string>
+    <string name="ui_84" formatted="false">"Sign in to Garmin"</string>
+    <string name="ui_85" formatted="false">"Sign in with browser"</string>
+    <string name="ui_86" formatted="false">"Sync now"</string>
+    <string name="ui_87" formatted="false">"Account / sign-in"</string>
+    <string name="ui_88" formatted="false">"Garmin connection"</string>
+    <string name="ui_89" formatted="false">"Sign in again"</string>
+    <string name="ui_90" formatted="false">"Browser sign-in"</string>
+    <string name="ui_91" formatted="false">"Disconnect account"</string>
+    <string name="ui_92" formatted="false">"Cancel"</string>
+    <string name="ui_93" formatted="false">"Automatically upload to Garmin"</string>
+    <string name="ui_94" formatted="false">"Please select a user slot and connect Garmin."</string>
+    <string name="ui_95" formatted="false">"Upload calculated muscle mass"</string>
+    <string name="ui_96" formatted="false">"Muscle mass = weight × muscle percentage ÷ 100. The original percentage is retained."</string>
+    <string name="ui_97" formatted="false">"Scale2Garmin 0.3 · Data stays on your device and with Garmin."</string>
+    <string name="ui_98" formatted="false">"Please connect Garmin in Settings."</string>
+    <string name="ui_99" formatted="false">"Please select your user slot."</string>
+    <string name="ui_100" formatted="false">"All measurements are uploaded or awaiting review."</string>
+    <string name="ui_101" formatted="false">"Upload to Garmin?"</string>
+    <string name="ui_102" formatted="false">" measurements from user slot "</string>
+    <string name="ui_103" formatted="false">" will be sent to your connected Garmin account."</string>
+    <string name="ui_104" formatted="false">"Upload"</string>
+    <string name="ui_105" formatted="false">"Garmin email"</string>
+    <string name="ui_106" formatted="false">"Password"</string>
+    <string name="ui_107" formatted="false">"Garmin sign-in"</string>
+    <string name="ui_108" formatted="false">"Sign in"</string>
+    <string name="ui_109" formatted="false">"Signing in …"</string>
+    <string name="ui_110" formatted="false">"Signed in to Garmin."</string>
+    <string name="ui_111" formatted="false">"Verification code"</string>
+    <string name="ui_112" formatted="false">"Garmin verification"</string>
+    <string name="ui_113" formatted="false">"Enter the verification code requested by Garmin."</string>
+    <string name="ui_114" formatted="false">"Confirm"</string>
+    <string name="ui_115" formatted="false">"Additional verification required. Please sign in again."</string>
+    <string name="ui_116" formatted="false">"Sign in to Garmin"</string>
+    <string name="ui_117" formatted="false">"Close"</string>
+    <string name="ui_118" formatted="false">"Setting up Garmin session …"</string>
+    <string name="ui_119" formatted="false">"Could not verify Garmin certificate."</string>
+    <string name="ui_120" formatted="false">"Scale profile"</string>
+    <string name="ui_121" formatted="false">"Scale-specific settings"</string>
+    <string name="ui_122" formatted="false">"The scale driver uses these details for user identification and body composition."</string>
+    <string name="ui_123" formatted="false">"Name"</string>
+    <string name="ui_124" formatted="false">"Date of birth (YYYY-MM-DD)"</string>
+    <string name="ui_125" formatted="false">"Height in cm"</string>
+    <string name="ui_126" formatted="false">"Male"</string>
+    <string name="ui_127" formatted="false">"Female"</string>
+    <string name="ui_128" formatted="false">"Sex"</string>
+    <string name="ui_129" formatted="false">"Sedentary"</string>
+    <string name="ui_130" formatted="false">"Lightly active"</string>
+    <string name="ui_131" formatted="false">"Moderately active"</string>
+    <string name="ui_132" formatted="false">"Very active"</string>
+    <string name="ui_133" formatted="false">"Extremely active"</string>
+    <string name="ui_134" formatted="false">"Activity"</string>
+    <string name="ui_135" formatted="false">"Save"</string>
+    <string name="ui_136" formatted="false">"Please check your date of birth and height."</string>
+    <string name="ui_137" formatted="false">"Bind key (32 hex characters)"</string>
+    <string name="ui_138" formatted="false">"MAC address (optional)"</string>
+    <string name="ui_139" formatted="false">"This model needs no additional keys. User prompts appear when connecting."</string>
+    <string name="ui_140" formatted="false">"Verify scale"</string>
+    <string name="ui_141" formatted="false">"User slot on scale"</string>
+    <string name="ui_142" formatted="false">"No measurement received · pull down to restart"</string>
+    <string name="ui_143" formatted="false">"Reception complete · pull down to restart"</string>
+    <string name="ui_144" formatted="false">"Reception stopped"</string>
+    <string name="ui_145" formatted="false">"Stop"</string>
+    <string name="ui_146" formatted="false">"Scale connection"</string>
+    <string name="ui_147" formatted="false">"Ready for your scale"</string>
+    <string name="ui_148" formatted="false">"Please enable Bluetooth and try again."</string>
+    <string name="ui_149" formatted="false">"Please select a scale first."</string>
+    <string name="ui_150" formatted="false">"Bluetooth is off. Restart reception."</string>
+    <string name="ui_151" formatted="false">"Scanning. Wake the scale or step on it."</string>
+    <string name="ui_152" formatted="false">"Waiting for the scale. Step on barefoot to weigh."</string>
+    <string name="ui_153" formatted="false">"Scan finished. Select your scale from the dropdown."</string>
+    <string name="ui_154" formatted="false">"Bluetooth access missing. Check permissions."</string>
+    <string name="ui_155" formatted="false">"Bluetooth scan failed ("</string>
+    <string name="ui_156" formatted="false">"). Please restart reception."</string>
+    <string name="ui_157" formatted="false">"Unnamed Bluetooth device"</string>
+    <string name="ui_158" formatted="false">"Connecting to scale …"</string>
+    <string name="ui_159" formatted="false">"Connected · ready to weigh"</string>
+    <string name="ui_160" formatted="false">"Reception ended · pull down to restart"</string>
+    <string name="ui_161" formatted="false">"Please complete your scale profile in Settings first."</string>
+    <string name="ui_162" formatted="false">"Connecting to scale …"</string>
+    <string name="ui_163" formatted="false">"Scale is not responding. Retrying …"</string>
+    <string name="ui_164" formatted="false">"Scale disconnected. Waiting for a measurement."</string>
+    <string name="ui_165" formatted="false">"No BS44x service found. Check the model and selected scale."</string>
+    <string name="ui_166" formatted="false">"Required measurement channel is missing."</string>
+    <string name="ui_167" formatted="false">"Could not enable measurement channel."</string>
+    <string name="ui_168" formatted="false">"Could not prepare scale."</string>
+    <string name="ui_169" formatted="false">"Connected · ready for body composition."</string>
+    <string name="ui_170" formatted="false">"Control channel is missing."</string>
+    <string name="ui_171" formatted="false">"Could not start Bluetooth operation."</string>
+    <string name="ui_172" formatted="false">"Weight received · waiting for body composition …"</string>
+    <string name="ui_173" formatted="false">"Measurement saved · user slot "</string>
+    <string name="ui_174" formatted="false">"Measurement already saved."</string>
+    <string name="ui_175" formatted="false">"Please select your scale user slot first."</string>
+    <string name="ui_176" formatted="false">"Garmin cooldown active. Please try again later."</string>
+    <string name="ui_177" formatted="false">"No new measurements for user slot "</string>
+    <string name="ui_178" formatted="false">"Checking Garmin connection …"</string>
+    <string name="ui_179" formatted="false">"Invalid measurement date. Check the scale clock."</string>
+    <string name="ui_180" formatted="false">"Measurement confirmed by Garmin."</string>
+    <string name="ui_181" formatted="false">"Uncertain result. Check Garmin before uploading again."</string>
+    <string name="ui_182" formatted="false">" measurements confirmed by Garmin."</string>
+    <string name="ui_183" formatted="false">"No measurements"</string>
+    <string name="ui_184" formatted="false">"No measurements in this period"</string>
+    <string name="ui_185" formatted="false">" chart with "</string>
+    <string name="ui_186" formatted="false">" measurements. Tap a point or use the arrows below the chart."</string>
+    <string name="ui_187" formatted="false">"Garmin is rate-limiting requests. Try again in at least 30 minutes."</string>
+    <string name="ui_188" formatted="false">"Connection destination not allowed"</string>
+    <string name="ui_189" formatted="false">"Response too large"</string>
+    <string name="ui_190" formatted="false">"Wait before signing in again (at least one minute, or 30 minutes after HTTP 429)."</string>
+    <string name="ui_191" formatted="false">"Garmin did not confirm sign-in. Check your credentials or try browser sign-in."</string>
+    <string name="ui_192" formatted="false">"Invalid sign-in ticket"</string>
+    <string name="ui_193" formatted="false">"Garmin did not issue a session"</string>
+    <string name="ui_194" formatted="false">"Please sign in to Garmin first"</string>
+    <string name="ui_195" formatted="false">"No Garmin session"</string>
+    <string name="ui_196" formatted="false">"Garmin did not clearly confirm the import. Please check Garmin."</string>
+    <string name="ui_197" formatted="false">"Invalid time"</string>
+    <string name="ui_198" formatted="false">"Weight packet too short"</string>
+    <string name="ui_199" formatted="false">"Please set the scale to kg"</string>
+    <string name="ui_200" formatted="false">"Body composition packet too short"</string>
+    <string name="ui_201" formatted="false">"Weight outside the valid range"</string>
+    <string name="ui_202" formatted="false">"Upload interrupted. Please check Garmin first."</string>
+    <string name="ui_203" formatted="false">"Could not save session"</string>
+    <string name="ui_204" formatted="false">"Garmin sign-in expired or access denied ("</string>
+    <string name="ui_205" formatted="false">"Garmin responded with HTTP "</string>
+    <string name="ui_206" formatted="false">"Operation failed ("</string>
+    <string name="ui_207" formatted="false">"). Please sign in again or check your connection."</string>
+    <string name="ui_208" formatted="false">"Manage your sign-in and connection"</string>
+    <string name="ui_209" formatted="false">"Sign in with email and password"</string>
+    <string name="ui_210" formatted="false">"Open the Garmin sign-in page"</string>
+    <string name="ui_211" formatted="false">"Remove saved sign-in"</string>
+    <string name="ui_212" formatted="false">"Syncs existing and new measurements for your selected scale user. Independently of Garmin."</string>
+    <string name="ui_213" formatted="false">"Sync with Health Connect"</string>
+    <string name="ui_214" formatted="false">"Sync to Health Connect now"</string>
+    <string name="ui_215" formatted="false">"Manage permissions"</string>
+    <string name="ui_216" formatted="false">"Data use and privacy"</string>
+    <string name="ui_217" formatted="false">"Please select your scale user first."</string>
+    <string name="ui_218" formatted="false">"Open Health Connect"</string>
+    <string name="ui_219" formatted="false">"Health Connect is not available on this device."</string>
+    <string name="ui_220" formatted="false">"Health Connect is unavailable. Please install or update it."</string>
+    <string name="ui_221" formatted="false">"Health Connect needs write permission."</string>
+    <string name="ui_222" formatted="false">"Syncing to Health Connect …"</string>
+    <string name="ui_223" formatted="false">"Health Connect is up to date."</string>
+    <string name="ui_224" formatted="false">"Health Connect is up to date. Only permitted metrics are synced."</string>
+    <string name="ui_225" formatted="false">"A measurement could not be synced. Please check the recorded values."</string>
+    <string name="ui_226" formatted="false">"Health Connect is temporarily unavailable. Sync will be retried."</string>
+    <string name="ui_227" formatted="false">"Scale2Garmin can write stored scale measurements for the selected scale user to Health Connect: weight, body fat, bone mass, body water mass calculated from weight and water percentage, and basal metabolic rate. Muscle percentage is not exported. No data is read from Health Connect. Data stays on your device; other apps can access it only with your permission in Health Connect. Garmin sync is controlled separately. You can turn off sync in Scale2Garmin and manage permissions or previously exported data in Health Connect. Turning sync off does not delete existing entries."</string>
+    <string name="ui_228" formatted="false">"Chart: use two fingers to zoom or pan. Tap a point for details."</string>
+    <string name="ui_229" formatted="false">"No measurements in this time window"</string>
+    <string name="ui_230" formatted="false">"Select curves"</string>
+    <string name="ui_231" formatted="false">"Reset time window"</string>
+    <string name="ui_232" formatted="false">"Each curve has its own scale; all curves share the time axis."</string>
+    <string name="ui_233" formatted="false">"Select metrics"</string>
+    <string name="ui_234" formatted="false">"Please select at least one metric."</string>
+    <string name="ui_235" formatted="false">"Pull down or tap ↻ to start receiving."</string>
+    <string name="ui_236" formatted="false">"Weight in kg · Body composition in %"</string>
+    <string name="ui_237" formatted="false">"Collapse selection"</string>
+    <string name="ui_238" formatted="false">"Name: only this curve · Checkboxes: multiple"</string>
+    <string name="ui_239" formatted="false">"Check timestamps"</string>
+    <string name="ui_240" formatted="false">"No reception data yet."</string>
+    <string name="ui_241" formatted="false">"Copy"</string>
+    <string name="ui_242" formatted="false">"Close"</string>
+    <string name="ui_243" formatted="false">"CSV backup"</string>
+    <string name="ui_244" formatted="false">"Saves all measurements as a readable CSV file in a location you choose."</string>
+    <string name="ui_245" formatted="false">"Save CSV backup"</string>
+    <string name="ui_246" formatted="false">"Import CSV"</string>
+    <string name="ui_247" formatted="false">"Scale2Garmin backups can already be imported. The exact VitaDock+ export format is required for VitaDock+ files."</string>
+    <string name="ui_248" formatted="false">" measurements saved."</string>
+    <string name="ui_249" formatted="false">"Could not save backup: "</string>
+    <string name="ui_250" formatted="false">" measurements imported · "</string>
+    <string name="ui_251" formatted="false">" duplicates skipped."</string>
+    <string name="ui_252" formatted="false">"CSV could not be imported"</string>
+    <string name="ui_253" formatted="false">"Imports Scale2Garmin backups and VitaDock+ weight exports."</string>
+    <string name="ui_254" formatted="false">"Importing file …"</string>
+    <string name="ui_255" formatted="false">"No file selected."</string>
+    <string name="ui_256" formatted="false">"Select a file …"</string>
+    <string name="ui_257" formatted="false">"Import failed: "</string>
+    <string name="ui_258" formatted="false">"Trends &amp; forecasts"</string>
+    <string name="ui_259" formatted="false">"Trend"</string>
+    <string name="ui_260" formatted="false">"stable"</string>
+    <string name="ui_261" formatted="false">"week"</string>
+    <string name="ui_262" formatted="false">"days"</string>
+    <string name="ui_263" formatted="false">"high reliability"</string>
+    <string name="ui_264" formatted="false">"medium reliability"</string>
+    <string name="ui_265" formatted="false">"low reliability"</string>
+    <string name="ui_266" formatted="false">"More data needed"</string>
+    <string name="ui_267" formatted="false">"Measurements on at least three days are needed for trends."</string>
+    <string name="ui_268" formatted="false">"Dashed lines show the robust trend. Forecasts are estimates based on the last 90 days."</string>
+    <string name="ui_269" formatted="false">"Target weight"</string>
+    <string name="ui_270" formatted="false">"Set target weight"</string>
+    <string name="ui_271" formatted="false">"About "</string>
+    <string name="ui_272" formatted="false">"estimated "</string>
+    <string name="ui_273" formatted="false">"Target weight reached."</string>
+    <string name="ui_274" formatted="false">"The current trend is too stable for a reliable time estimate."</string>
+    <string name="ui_275" formatted="false">"The current trend is currently moving away from the target weight."</string>
+    <string name="ui_276" formatted="false">"At the current pace, the target is more than ten years away."</string>
+    <string name="ui_277" formatted="false">"The time estimate needs at least five measurement days across two weeks."</string>
+    <string name="ui_278" formatted="false">"weeks"</string>
+    <string name="ui_279" formatted="false">"months"</string>
+    <string name="ui_280" formatted="false">"The remaining time is estimated from your robust weight trend."</string>
+    <string name="ui_281" formatted="false">"Target weight in kg"</string>
+    <string name="ui_282" formatted="false">"Apply"</string>
+    <string name="ui_283" formatted="false">"Remove target"</string>
+    <string name="ui_284" formatted="false">"Enter a weight between 1 and 300 kg."</string>
+    <string name="ui_285" formatted="false">"Automatic backup"</string>
+    <string name="ui_286" formatted="false">"Creates a complete, restorable CSV file after new measurements and once a day."</string>
+    <string name="ui_287" formatted="false">"Select destination folder"</string>
+    <string name="ui_288" formatted="false">"Change destination folder"</string>
+    <string name="ui_289" formatted="false">"No destination folder selected."</string>
+    <string name="ui_290" formatted="false">"Destination: "</string>
+    <string name="ui_291" formatted="false">"Automatically back up after new measurements"</string>
+    <string name="ui_292" formatted="false">"Destination folder selected."</string>
+    <string name="ui_293" formatted="false">"Could not save destination folder: "</string>
+    <string name="ui_294" formatted="false">" measurements backed up automatically."</string>
+    <string name="ui_295" formatted="false">"Automatic backup failed: "</string>
+    <string name="ui_296" formatted="false">"The selected folder does not allow write access."</string>
+    <string name="ui_297" formatted="false">"Creates a complete, restorable CSV file after each new measurement and overwrites the previous backup."</string>
+    <string name="ui_298" formatted="false">"Keep a separate backup file for each day"</string>
+    <string name="ui_299" formatted="false">"Optional: keeps daily snapshots named Scale2Garmin-Backup-YYYY-MM-DD.csv, updated after new measurements."</string>
+</resources>
