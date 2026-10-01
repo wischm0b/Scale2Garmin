@@ -24,7 +24,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
     private String tr(int id){return Tr.t(this,id);}
 
     private int GREEN,INK,MUTED,PAPER,SURFACE,SOFT,GRID,AMBER;
-    private boolean dark,settingsOpen,registered,followLatest=true;
+    private boolean dark,settingsOpen,registered,followLatest=true,detailExpanded;
     private SharedPreferences prefs;
     private LinearLayout root,content,detailsHost;
     private ScrollView scroll;
@@ -77,7 +77,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
             else if(enable){prefs.edit().putBoolean("autoBackup",false).apply();render();}
         });
         healthPermissions=registerForActivityResult(HealthSync.permissionContract(),granted->{boolean enabled=granted.stream().anyMatch(HealthSync.permissions()::contains)&&prefs.getInt("user",-1)>0;prefs.edit().putBoolean("healthSync",enabled).apply();HealthJob.periodic(this);if(enabled)HealthJob.schedule(this);else HealthSync.status(this,"Health Connect benötigt eine Schreibberechtigung.");render();});palette();period=Math.max(0,Math.min(4,prefs.getInt("chartPeriod",1)));metricIndex=Math.max(0,Math.min(ChartData.Metric.values().length-1,prefs.getInt("chartMetric",0)));
-        if(saved!=null){settingsOpen=saved.getBoolean("settings");selectedId=saved.getString("selected");followLatest=saved.getBoolean("follow",true);pendingBluetoothAction=saved.getString("bluetoothAction");windowLeft=saved.getDouble("windowLeft",Double.NaN);windowRight=saved.getDouble("windowRight",Double.NaN);lastDisplayedReception=saved.getString("displayedReception");}
+        if(saved!=null){settingsOpen=saved.getBoolean("settings");selectedId=saved.getString("selected");followLatest=saved.getBoolean("follow",true);detailExpanded=saved.getBoolean("detailExpanded",false);pendingBluetoothAction=saved.getString("bluetoothAction");windowLeft=saved.getDouble("windowLeft",Double.NaN);windowRight=saved.getDouble("windowRight",Double.NaN);lastDisplayedReception=saved.getString("displayedReception");}
         getWindow().setStatusBarColor(PAPER);getWindow().setNavigationBarColor(PAPER);getWindow().setBackgroundDrawableResource(dark?android.R.color.black:android.R.color.white);
         getWindow().getDecorView().setSystemUiVisibility(dark?0:View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         Sync.recover(this);render(false);UploadJob.periodic(this);HealthJob.periodic(this);HealthJob.schedule(this);BackupJob.configure(this);
@@ -87,7 +87,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         PAPER=Color.parseColor(dark?"#0F1714":"#F3F6F1");SURFACE=Color.parseColor(dark?"#1B2722":"#FFFFFF");SOFT=Color.parseColor(dark?"#273A30":"#EAF1EA");
         GRID=Color.parseColor(dark?"#34463D":"#E1E9E1");AMBER=Color.parseColor(dark?"#F1BF76":"#986018");
     }
-    @Override public void onSaveInstanceState(Bundle b){super.onSaveInstanceState(b);b.putBoolean("settings",settingsOpen);b.putString("selected",selectedId);b.putBoolean("follow",followLatest);b.putString("bluetoothAction",pendingBluetoothAction);b.putDouble("windowLeft",windowLeft);b.putDouble("windowRight",windowRight);b.putString("displayedReception",lastDisplayedReception);}
+    @Override public void onSaveInstanceState(Bundle b){super.onSaveInstanceState(b);b.putBoolean("settings",settingsOpen);b.putString("selected",selectedId);b.putBoolean("follow",followLatest);b.putBoolean("detailExpanded",detailExpanded);b.putString("bluetoothAction",pendingBluetoothAction);b.putDouble("windowLeft",windowLeft);b.putDouble("windowRight",windowRight);b.putString("displayedReception",lastDisplayedReception);}
     // Android 12 uses our signature permission; Android 13+ additionally uses NOT_EXPORTED.
     @android.annotation.SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override protected void onStart(){
@@ -188,6 +188,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
             if(shownMetrics().stream().noneMatch(m->Double.isFinite(m.value(incoming))))metricIndex=0;
         }
         connection(current);
+        detailsHost=column();detailsHost.setTag("measurementDetails");content.addView(detailsHost); // Keep the selected reading directly above the chart.
         LinearLayout box=card(null);LinearLayout filters=new LinearLayout(this);box.addView(filters);
         LinearLayout range=column(),kind=column();LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(0,-2,.42f);p.rightMargin=dp(10);filters.addView(range,p);filters.addView(kind,new LinearLayout.LayoutParams(0,-2,.58f));
         paragraph(range,tr(R.string.ui_12));paragraph(kind,tr(R.string.ui_11));
@@ -210,9 +211,8 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         chart.onWindowChanged(()->{windowLeft=chart.viewport().left();windowRight=chart.viewport().right();if(detailsHost!=null)details();});
         box.addView(chart,new LinearLayout.LayoutParams(-1,dp(230+shown.size()*21)));
 
+        details();
         insights(all,shown);
-
-        detailsHost=column();detailsHost.setTag("measurementDetails");content.addView(detailsHost);details();
         if(!prefs.contains("address"))button(content,tr(R.string.ui_44),true,()->{settingsOpen=true;render(false);});
 
     }
@@ -288,9 +288,12 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         LinearLayout title=column();title.addView(text(date(m),13,MUTED,false));title.addView(text(n(detailMetric.value(m),detailMetric.unit),32,INK,true));top.addView(title,new LinearLayout.LayoutParams(0,-2,1));
         IconView previous=icon("‹",tr(R.string.ui_29),()->selectMeasurement(selectedIndex-1)),next=icon("›",tr(R.string.ui_30),()->selectMeasurement(selectedIndex+1));
         previous.setEnabled(selectedIndex>0);previous.setAlpha(selectedIndex>0?1:.3f);next.setEnabled(selectedIndex<graphRows.size()-1);next.setAlpha(selectedIndex<graphRows.size()-1?1:.3f);top.addView(previous);top.addView(next);
+        IconView collapse=icon(detailExpanded?"⌃":"⌄",Tr.text(this,detailExpanded?"Details einklappen":"Details ausklappen"),()->{detailExpanded=!detailExpanded;details();});
+        collapse.setTag("measurementDetailsToggle");top.addView(collapse,new LinearLayout.LayoutParams(dp(40),dp(40)));
         String change=Tr.text(this,detailMetric.label)+" · "+(selectedIndex+1)+" / "+graphRows.size();
         if(selectedIndex>0&&Double.isFinite(detailMetric.value(m))&&Double.isFinite(detailMetric.value(graphRows.get(selectedIndex-1).measurement()))){double delta=detailMetric.value(m)-detailMetric.value(graphRows.get(selectedIndex-1).measurement());change=String.format(Tr.locale(this),tr(R.string.ui_66),delta,detailMetric.unit);}
         paragraph(box,change);
+        if(!detailExpanded)return;
         String[][] values={{tr(R.string.ui_15),n(m.weight,"kg")},{tr(R.string.ui_16),n(m.fat,"%")},{tr(R.string.ui_17),n(m.musclePercent,"%")},{tr(R.string.ui_18),n(m.water,"%")},{tr(R.string.ui_19),n(ChartData.Metric.BONE.value(m),"%")},{tr(R.string.ui_21),n(m.basal,"kcal")}};
         for(int i=0;i<values.length;i+=2){LinearLayout pair=new LinearLayout(this);LinearLayout.LayoutParams pl=new LinearLayout.LayoutParams(-1,-2);pl.topMargin=dp(7);box.addView(pair,pl);for(int j=i;j<i+2;j++){LinearLayout cell=column();cell.addView(text(values[j][0],11,MUTED,false));cell.addView(text(values[j][1],16,INK,true));pair.addView(cell,new LinearLayout.LayoutParams(0,-2,1));}}
         paragraph(box,tr(R.string.ui_68)+n(m.muscleKg(),"kg")+tr(R.string.ui_69));

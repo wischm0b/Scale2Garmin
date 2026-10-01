@@ -12,7 +12,11 @@ public final class IconView extends View {
     private void path(Canvas c,float... points){Path p=new Path();p.moveTo(points[0],points[1]);for(int i=2;i<points.length;i+=2)p.lineTo(points[i],points[i+1]);c.drawPath(p,ink);}
     @Override protected void onDraw(Canvas c){super.onDraw(c);float size=Math.min(getWidth(),getHeight())*.55f;c.save();c.translate((getWidth()-size)/2,(getHeight()-size)/2);c.scale(size/24,size/24);
         switch(symbol){
-            case "⚙"->{c.drawLine(4,6,20,6,ink);c.drawLine(4,12,20,12,ink);c.drawLine(4,18,20,18,ink);c.drawLine(8,3,8,9,ink);c.drawLine(16,9,16,15,ink);c.drawLine(10,15,10,21,ink);}
+            case "⚙"->{
+                Path gear=new Path();
+                for(int i=0;i<24;i++){double a=-Math.PI/2+i*Math.PI/12;float radius=(i%3==1)?9.8f:((i%3==2)?7.7f:9.8f);float x=12+(float)Math.cos(a)*radius,y=12+(float)Math.sin(a)*radius;if(i==0)gear.moveTo(x,y);else gear.lineTo(x,y);}
+                gear.close();c.drawPath(gear,ink);c.drawCircle(12,12,3.1f,ink);
+            }
             case "‹"->path(c,15,5,8,12,15,19);
             case "›"->path(c,9,5,16,12,9,19);
             case "⌃"->path(c,5,15,12,8,19,15);

@@ -85,7 +85,7 @@ public class AppTest {
             Spinner metric=(Spinner)description(decor(c.get()),"Zeitraum");
             assertTrue(metric.getPopupBackground() instanceof android.graphics.drawable.GradientDrawable);
             assertTrue(((android.graphics.drawable.GradientDrawable)metric.getPopupBackground()).getCornerRadius()>0);
-            View chart=decor(c.get()).findViewWithTag("measurementChart");ViewGroup panel=(ViewGroup)chart.getParent();assertSame(chart,panel.getChildAt(panel.getChildCount()-1));
+            View chart=decor(c.get()).findViewWithTag("measurementChart");ViewGroup content=(ViewGroup)chart.getParent();View details=decor(c.get()).findViewWithTag("measurementDetails");assertTrue(content.indexOfChild(details)<content.indexOfChild(chart));
             description(decor(c.get()),"Einstellungen öffnen").performClick();
             Switch sync=(Switch)find(decor(c.get()),"Mit Health Connect synchronisieren");assertNotNull(sync);assertFalse(sync.isChecked());assertNotNull(find(decor(c.get()),"Datennutzung und Datenschutz"));
         }
