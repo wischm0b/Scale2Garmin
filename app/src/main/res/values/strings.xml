@@ -300,4 +300,6 @@
     <string name="ui_297" formatted="false">"Creates a complete, restorable CSV file after each new measurement and overwrites the previous backup."</string>
     <string name="ui_298" formatted="false">"Keep a separate backup file for each day"</string>
     <string name="ui_299" formatted="false">"Optional: keeps daily snapshots named Scale2Garmin-Backup-YYYY-MM-DD.csv, updated after new measurements."</string>
+    <string name="expand_details">Expand details</string>
+    <string name="collapse_details">Collapse details</string>
 </resources>

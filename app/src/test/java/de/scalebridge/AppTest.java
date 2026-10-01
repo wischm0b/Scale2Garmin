@@ -85,9 +85,19 @@ public class AppTest {
             Spinner metric=(Spinner)description(decor(c.get()),"Zeitraum");
             assertTrue(metric.getPopupBackground() instanceof android.graphics.drawable.GradientDrawable);
             assertTrue(((android.graphics.drawable.GradientDrawable)metric.getPopupBackground()).getCornerRadius()>0);
-            View chart=decor(c.get()).findViewWithTag("measurementChart");ViewGroup content=(ViewGroup)chart.getParent();View details=decor(c.get()).findViewWithTag("measurementDetails");assertTrue(content.indexOfChild(details)<content.indexOfChild(chart));
+            View chart=decor(c.get()).findViewWithTag("measurementChart");ViewGroup chartPanel=(ViewGroup)chart.getParent();ViewGroup content=(ViewGroup)chartPanel.getParent();View details=decor(c.get()).findViewWithTag("measurementDetails");assertTrue(content.indexOfChild(details)>=0);assertTrue(content.indexOfChild(details)<content.indexOfChild(chartPanel));
             description(decor(c.get()),"Einstellungen öffnen").performClick();
             Switch sync=(Switch)find(decor(c.get()),"Mit Health Connect synchronisieren");assertNotNull(sync);assertFalse(sync.isChecked());assertNotNull(find(decor(c.get()),"Datennutzung und Datenschutz"));
+        }
+    }
+    @Test public void expandingDetailsPreservesTheReadingAfterChartDraw(){
+        seed();try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()){
+            layout(c.get());View root=decor(c.get());ViewGroup details=root.findViewWithTag("measurementDetails");View summary=((ViewGroup)details.getChildAt(0)).getChildAt(0);
+            View expanded=root.findViewWithTag("expandedMeasurementDetails");assertEquals(View.GONE,expanded.getVisibility());
+            String selected=ReflectionHelpers.getField(c.get(),"selectedId");
+            MeasurementChart chart=root.findViewWithTag("measurementChart");android.graphics.Bitmap bitmap=android.graphics.Bitmap.createBitmap(chart.getWidth(),chart.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);chart.draw(new android.graphics.Canvas(bitmap));
+            View toggle=root.findViewWithTag("measurementDetailsToggle");toggle.performClick();assertEquals(View.VISIBLE,expanded.getVisibility());toggle.performClick();assertEquals(View.GONE,expanded.getVisibility());
+            assertSame(summary,((ViewGroup)details.getChildAt(0)).getChildAt(0));assertEquals(selected,ReflectionHelpers.getField(c.get(),"selectedId"));assertNull(find(root,"Zeitausschnitt zurücksetzen"));bitmap.recycle();
         }
     }
     @Test public void receptionStopsAfterIdleAndAfterReceipt(){
@@ -248,7 +258,7 @@ public class AppTest {
             ((Runnable)ReflectionHelpers.getField(chart,"windowListener")).run();double span=chart.viewport().span();
             context().sendBroadcast(new Intent(Sync.EVENT).setPackage(context().getPackageName()));Shadows.shadowOf(Looper.getMainLooper()).idle();
             chart=decor(c.get()).findViewWithTag("measurementChart");assertEquals(span,chart.viewport().span(),1);
-            find(decor(c.get()),"Zeitausschnitt zurücksetzen").performClick();assertTrue(chart.viewport().span()>span);
+            assertNull(find(decor(c.get()),"Zeitausschnitt zurücksetzen"));
         }
     }
     @Test @Config(sdk=35,qualifiers="w393dp-h851dp-port-xxhdpi") @GraphicsMode(GraphicsMode.Mode.NATIVE)

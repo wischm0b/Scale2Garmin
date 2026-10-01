@@ -300,4 +300,6 @@
     <string name="ui_297" formatted="false">"Erstellt nach jeder neuen Messung eine vollständige, wieder importierbare CSV-Datei und überschreibt die vorherige Sicherung."</string>
     <string name="ui_298" formatted="false">"Für jeden Tag eine eigene Sicherungsdatei"</string>
     <string name="ui_299" formatted="false">"Optional: behält Tagesstände im Format Scale2Garmin-Backup-JJJJ-MM-TT.csv, jeweils aktualisiert nach neuen Messungen."</string>
+    <string name="expand_details">Details ausklappen</string>
+    <string name="collapse_details">Details einklappen</string>
 </resources>

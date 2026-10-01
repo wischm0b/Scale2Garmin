@@ -106,7 +106,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
     private void paragraph(LinearLayout box,String s){box.addView(text(s,13,MUTED,false));}
     private LinearLayout column(){LinearLayout box=new LinearLayout(this);box.setOrientation(LinearLayout.VERTICAL);return box;}
     private LinearLayout panel(LinearLayout parent,String title){
-        LinearLayout box=column();box.setPadding(dp(18),dp(16),dp(18),dp(16));box.setBackground(bg(SURFACE,20));LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=dp(14);parent.addView(box,p);
+        LinearLayout box=column();box.setPadding(dp(16),dp(12),dp(16),dp(12));box.setBackground(bg(SURFACE,20));LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=dp(10);parent.addView(box,p);
         if(title!=null)box.addView(text(title,18,INK,true));return box;
     }
     private LinearLayout card(String title){return panel(content,title);}
@@ -197,7 +197,6 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         String selectedLabel=Tr.text(this,metric().label)+(selectedMetrics.size()>1?" +"+(selectedMetrics.size()-1):" · "+metric().unit)+"  ▾";
         Button metricMenu=button(kind,selectedLabel,false,this::chooseMetrics);metricMenu.setTag("metricMenu");metricMenu.setContentDescription(tr(R.string.ui_10));
         ((LinearLayout.LayoutParams)metricMenu.getLayoutParams()).topMargin=0;
-        TextView reset=text(Tr.text(this,"Zeitausschnitt zurücksetzen"),12,GREEN,true);reset.setPadding(0,dp(12),0,dp(8));reset.setMinHeight(dp(48));reset.setGravity(Gravity.CENTER_VERTICAL);reset.setOnClickListener(v->{if(chart!=null)chart.resetWindow();});box.addView(reset);
         long start=ChartData.start(period,Instant.now(),ZoneId.systemDefault()),end=Instant.now().getEpochSecond();
         List<ChartData.Metric> shown=shownMetrics();graphRows=new ArrayList<>();
         for(Store.Row row:all)if(shown.stream().anyMatch(m->Double.isFinite(m.value(row.measurement()))))graphRows.add(row);
@@ -209,7 +208,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         if(detailCurve!=null)chart.setSelectedMetric(detailCurve);
         if(Double.isFinite(windowLeft))chart.restoreWindow(windowLeft,windowRight);
         chart.onWindowChanged(()->{windowLeft=chart.viewport().left();windowRight=chart.viewport().right();if(detailsHost!=null)details();});
-        box.addView(chart,new LinearLayout.LayoutParams(-1,dp(230+shown.size()*21)));
+        box.addView(chart,new LinearLayout.LayoutParams(-1,dp(200+shown.size()*21)));
 
         details();
         insights(all,shown);
@@ -288,12 +287,16 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         LinearLayout title=column();title.addView(text(date(m),13,MUTED,false));title.addView(text(n(detailMetric.value(m),detailMetric.unit),32,INK,true));top.addView(title,new LinearLayout.LayoutParams(0,-2,1));
         IconView previous=icon("‹",tr(R.string.ui_29),()->selectMeasurement(selectedIndex-1)),next=icon("›",tr(R.string.ui_30),()->selectMeasurement(selectedIndex+1));
         previous.setEnabled(selectedIndex>0);previous.setAlpha(selectedIndex>0?1:.3f);next.setEnabled(selectedIndex<graphRows.size()-1);next.setAlpha(selectedIndex<graphRows.size()-1?1:.3f);top.addView(previous);top.addView(next);
-        IconView collapse=icon(detailExpanded?"⌃":"⌄",Tr.text(this,detailExpanded?"Details einklappen":"Details ausklappen"),()->{detailExpanded=!detailExpanded;details();});
-        collapse.setTag("measurementDetailsToggle");top.addView(collapse,new LinearLayout.LayoutParams(dp(40),dp(40)));
+        LinearLayout expanded=column();expanded.setTag("expandedMeasurementDetails");
+        IconView collapse=icon(detailExpanded?"⌃":"⌄",tr(detailExpanded?R.string.collapse_details:R.string.expand_details),()->{});
+        collapse.setOnClickListener(v->{detailExpanded=!detailExpanded;expanded.setVisibility(detailExpanded?View.VISIBLE:View.GONE);collapse.setSymbol(detailExpanded?"⌃":"⌄");collapse.setContentDescription(tr(detailExpanded?R.string.collapse_details:R.string.expand_details));});
+        collapse.setTag("measurementDetailsToggle");top.addView(collapse);
+        for(IconView control:new IconView[]{previous,next,collapse}){LinearLayout.LayoutParams controlParams=new LinearLayout.LayoutParams(dp(36),dp(36));controlParams.leftMargin=dp(8);control.setLayoutParams(controlParams);}
         String change=Tr.text(this,detailMetric.label)+" · "+(selectedIndex+1)+" / "+graphRows.size();
         if(selectedIndex>0&&Double.isFinite(detailMetric.value(m))&&Double.isFinite(detailMetric.value(graphRows.get(selectedIndex-1).measurement()))){double delta=detailMetric.value(m)-detailMetric.value(graphRows.get(selectedIndex-1).measurement());change=String.format(Tr.locale(this),tr(R.string.ui_66),delta,detailMetric.unit);}
         paragraph(box,change);
-        if(!detailExpanded)return;
+        box.addView(expanded);expanded.setVisibility(detailExpanded?View.VISIBLE:View.GONE);
+        box=expanded;
         String[][] values={{tr(R.string.ui_15),n(m.weight,"kg")},{tr(R.string.ui_16),n(m.fat,"%")},{tr(R.string.ui_17),n(m.musclePercent,"%")},{tr(R.string.ui_18),n(m.water,"%")},{tr(R.string.ui_19),n(ChartData.Metric.BONE.value(m),"%")},{tr(R.string.ui_21),n(m.basal,"kcal")}};
         for(int i=0;i<values.length;i+=2){LinearLayout pair=new LinearLayout(this);LinearLayout.LayoutParams pl=new LinearLayout.LayoutParams(-1,-2);pl.topMargin=dp(7);box.addView(pair,pl);for(int j=i;j<i+2;j++){LinearLayout cell=column();cell.addView(text(values[j][0],11,MUTED,false));cell.addView(text(values[j][1],16,INK,true));pair.addView(cell,new LinearLayout.LayoutParams(0,-2,1));}}
         paragraph(box,tr(R.string.ui_68)+n(m.muscleKg(),"kg")+tr(R.string.ui_69));

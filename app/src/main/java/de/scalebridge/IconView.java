@@ -6,10 +6,11 @@ import android.view.View;
 
 /** Geometric icons share the same centered 24-unit canvas, independent of font baselines. */
 public final class IconView extends View {
-    private final String symbol;
+    private String symbol;
     private final Paint ink=new Paint(Paint.ANTI_ALIAS_FLAG);
     public IconView(Context context,String symbol,int color){super(context);this.symbol=symbol;ink.setColor(color);ink.setStrokeWidth(1.9f);ink.setStyle(Paint.Style.STROKE);ink.setStrokeCap(Paint.Cap.ROUND);ink.setStrokeJoin(Paint.Join.ROUND);}
     private void path(Canvas c,float... points){Path p=new Path();p.moveTo(points[0],points[1]);for(int i=2;i<points.length;i+=2)p.lineTo(points[i],points[i+1]);c.drawPath(p,ink);}
+    public void setSymbol(String symbol){this.symbol=symbol;invalidate();}
     @Override protected void onDraw(Canvas c){super.onDraw(c);float size=Math.min(getWidth(),getHeight())*.55f;c.save();c.translate((getWidth()-size)/2,(getHeight()-size)/2);c.scale(size/24,size/24);
         switch(symbol){
             case "⚙"->{
@@ -20,6 +21,7 @@ public final class IconView extends View {
             case "‹"->path(c,15,5,8,12,15,19);
             case "›"->path(c,9,5,16,12,9,19);
             case "⌃"->path(c,5,15,12,8,19,15);
+            case "⌄"->path(c,5,9,12,16,19,9);
             case "✓"->path(c,4,12,10,18,20,6);
             case "−"->path(c,5,12,19,12);
             case "↗"->{path(c,5,19,19,5);path(c,9,5,19,5,19,15);}
