@@ -100,6 +100,13 @@ public class AppTest {
             assertSame(summary,((ViewGroup)details.getChildAt(0)).getChildAt(0));assertEquals(selected,ReflectionHelpers.getField(c.get(),"selectedId"));assertNull(find(root,"Zeitausschnitt zurücksetzen"));bitmap.recycle();
         }
     }
+    @Test public void changingChartWindowDoesNotRebuildOrResizeMeasurementPanel(){
+        seed();try(ActivityController<MainActivity> c=Robolectric.buildActivity(MainActivity.class).setup().visible()){
+            layout(c.get());ViewGroup details=decor(c.get()).findViewWithTag("measurementDetails");View panel=details.getChildAt(0);int height=details.getHeight();String selected=ReflectionHelpers.getField(c.get(),"selectedId");
+            MeasurementChart chart=decor(c.get()).findViewWithTag("measurementChart");
+            for(double zoom:new double[]{2,.5,3}){chart.viewport().transform(.5,.4,zoom);((Runnable)ReflectionHelpers.getField(chart,"windowListener")).run();layout(c.get());assertSame(panel,details.getChildAt(0));assertEquals(height,details.getHeight());assertEquals(selected,ReflectionHelpers.getField(c.get(),"selectedId"));}
+        }
+    }
     @Test public void receptionStopsAfterIdleAndAfterReceipt(){
         var controller=Robolectric.buildService(ScaleService.class).create();try{
             ScaleService service=controller.get();ReflectionHelpers.setStaticField(ScaleService.class,"active",true);

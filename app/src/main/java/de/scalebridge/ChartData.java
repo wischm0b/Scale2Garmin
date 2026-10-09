@@ -16,6 +16,21 @@ public final class ChartData {
     public record Group(int first,int last,long timestamp,double mean,int count){
         public Group(int first,int last,long timestamp,double mean){this(first,last,timestamp,mean,last-first+1);}
     }
+    /** Extrema of the visible line, including interpolated crossings at both viewport edges. */
+    public static double[] visibleBounds(List<Group> groups,double left,double right){
+        double min=Double.POSITIVE_INFINITY,max=Double.NEGATIVE_INFINITY;
+        for(int i=0;i<groups.size();i++){
+            Group g=groups.get(i);
+            if(g.timestamp()>=left&&g.timestamp()<=right){min=Math.min(min,g.mean());max=Math.max(max,g.mean());}
+            if(i==0)continue;Group previous=groups.get(i-1);
+            if(g.timestamp()<=previous.timestamp()||g.timestamp()<left||previous.timestamp()>right)continue;
+            double a=Math.max(left,previous.timestamp()),b=Math.min(right,g.timestamp());
+            double va=previous.mean()+(g.mean()-previous.mean())*(a-previous.timestamp())/(g.timestamp()-previous.timestamp());
+            double vb=previous.mean()+(g.mean()-previous.mean())*(b-previous.timestamp())/(g.timestamp()-previous.timestamp());
+            min=Math.min(min,Math.min(va,vb));max=Math.max(max,Math.max(va,vb));
+        }
+        return new double[]{min,max};
+    }
     /** Indices refer to the original history, even when a metric is missing or off-screen. */
     public static List<Group> visibleGroups(List<Store.Row> rows,Metric metric,double left,double right,float widthDp){
         List<Group> result=new ArrayList<>();int first=-1,last=-1,count=0;double sum=0,time=0;long firstTime=0;

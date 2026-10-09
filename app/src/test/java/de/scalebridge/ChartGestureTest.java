@@ -11,6 +11,17 @@ import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class) @Config(sdk={31,35}) @GraphicsMode(GraphicsMode.Mode.NATIVE)
 public class ChartGestureTest {
+    @Test public void verticalScaleFollowsTheWindowWithASmoothTransition(){
+        var context=RuntimeEnvironment.getApplication();List<Store.Row> rows=new ArrayList<>();
+        for(int i=0;i<30;i++)rows.add(new Store.Row(new Measurement("A",i*86400,1,i==0?150:80,20,50,30,3,1700),"sent",""));
+        MeasurementChart chart=new MeasurementChart(context,rows,ChartData.Metric.WEIGHT,29,Bs444Protocol.EPOCH,Bs444Protocol.EPOCH+29*86400,Color.GREEN,Color.GRAY,Color.DKGRAY,Color.BLACK,index->{});
+        chart.layout(0,0,1000,600);Bitmap bitmap=Bitmap.createBitmap(1000,600,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);chart.draw(canvas);
+        double[] original=((double[])org.robolectric.util.ReflectionHelpers.getField(chart,"axisBounds")).clone();assertTrue(original[1]>100);
+        chart.restoreWindow(Bs444Protocol.EPOCH+20*86400,Bs444Protocol.EPOCH+29*86400);chart.draw(canvas);
+        double[] immediate=org.robolectric.util.ReflectionHelpers.getField(chart,"axisBounds");assertTrue(immediate[1]>81);
+        Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofSeconds(1));chart.draw(canvas);
+        double[] settled=org.robolectric.util.ReflectionHelpers.getField(chart,"axisBounds");assertEquals(79.6,settled[0],.02);assertEquals(80.4,settled[1],.02);bitmap.recycle();
+    }
     private MotionEvent event(int action,float... points){
         int count=points.length/2;MotionEvent.PointerProperties[] props=new MotionEvent.PointerProperties[count];MotionEvent.PointerCoords[] coords=new MotionEvent.PointerCoords[count];
         for(int i=0;i<count;i++){props[i]=new MotionEvent.PointerProperties();props[i].id=i;props[i].toolType=MotionEvent.TOOL_TYPE_FINGER;coords[i]=new MotionEvent.PointerCoords();coords[i].x=points[i*2];coords[i].y=points[i*2+1];coords[i].pressure=1;coords[i].size=1;}

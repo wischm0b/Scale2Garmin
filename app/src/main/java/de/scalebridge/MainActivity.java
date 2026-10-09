@@ -207,7 +207,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
         double target=targetWeight();if(Double.isFinite(target))chart.setTargetWeight(target);
         if(detailCurve!=null)chart.setSelectedMetric(detailCurve);
         if(Double.isFinite(windowLeft))chart.restoreWindow(windowLeft,windowRight);
-        chart.onWindowChanged(()->{windowLeft=chart.viewport().left();windowRight=chart.viewport().right();if(detailsHost!=null)details();});
+        chart.onWindowChanged(()->{windowLeft=chart.viewport().left();windowRight=chart.viewport().right();});
         box.addView(chart,new LinearLayout.LayoutParams(-1,dp(200+shown.size()*21)));
 
         details();

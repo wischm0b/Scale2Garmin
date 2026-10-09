@@ -21,6 +21,8 @@ public final class MeasurementChart extends View {
     private Runnable windowListener=()->{};
     private int selected;
     private double targetWeight=Double.NaN;
+    private final double[] axisBounds={Double.NaN,Double.NaN,Double.NaN,Double.NaN};
+    private long lastAxisFrame;
     // Primary series coordinates remain available to accessibility/UI verification.
     private float[] xs,ys;
     private List<ChartData.Group> groups=List.of();
@@ -72,21 +74,29 @@ public final class MeasurementChart extends View {
         series.clear();
         boolean hasKg=metrics.contains(ChartData.Metric.WEIGHT),hasPercent=metrics.stream().anyMatch(m->m!=ChartData.Metric.WEIGHT);
         plot.set(dp(57),dp(30+metrics.size()*21),getWidth()-dp(hasKg&&hasPercent?57:14),getHeight()-dp(32));
-        // Fixed bounds over this history keep vertical scales stable during a time-axis gesture.
+        // Only the clipped visible lines determine the scale; off-screen neighbours supply edge crossings.
         double kgMin=Double.POSITIVE_INFINITY,kgMax=Double.NEGATIVE_INFINITY,pctMin=Double.POSITIVE_INFINITY,pctMax=Double.NEGATIVE_INFINITY;
-        for(ChartData.Metric m:metrics)for(Store.Row row:rows){double v=m.value(row.measurement());if(!Double.isFinite(v))continue;
-            if(m==ChartData.Metric.WEIGHT){kgMin=Math.min(kgMin,v);kgMax=Math.max(kgMax,v);}else{pctMin=Math.min(pctMin,v);pctMax=Math.max(pctMax,v);}}
-        if(!Double.isFinite(kgMin)){kgMin=0;kgMax=1;}if(!Double.isFinite(pctMin)){pctMin=0;pctMax=1;}
-        double kgMargin=Math.max(.4,(kgMax-kgMin)*.18),pctMargin=Math.max(.4,(pctMax-pctMin)*.18);
         for(ChartData.Metric m:metrics){
             Series s=new Series(m,color(m),ChartData.lineGroups(rows,m,viewport.left(),viewport.right(),Math.max(1,plot.width()/dp(1))),trends.get(m));
-            boolean kg=m==ChartData.Metric.WEIGHT;s.min=kg?Math.max(0,kgMin-kgMargin):Math.max(0,pctMin-pctMargin);s.max=kg?kgMax+kgMargin:Math.min(100,pctMax+pctMargin);
+            series.add(s);double[] bounds=ChartData.visibleBounds(s.groups,viewport.left(),viewport.right());
+            if(m==ChartData.Metric.WEIGHT){kgMin=Math.min(kgMin,bounds[0]);kgMax=Math.max(kgMax,bounds[1]);}else{pctMin=Math.min(pctMin,bounds[0]);pctMax=Math.max(pctMax,bounds[1]);}}
+        if(!Double.isFinite(kgMin)){kgMin=0;kgMax=1;}if(!Double.isFinite(pctMin)){pctMin=0;pctMax=1;}
+        double kgMargin=Math.max(.4,(kgMax-kgMin)*.18),pctMargin=Math.max(.4,(pctMax-pctMin)*.18);
+        double[] targets={Math.max(0,kgMin-kgMargin),kgMax+kgMargin,Math.max(0,pctMin-pctMargin),Math.min(100,pctMax+pctMargin)};
+        long now=android.os.SystemClock.uptimeMillis();double blend=1-Math.exp(-Math.max(0,now-lastAxisFrame)/100.0);lastAxisFrame=now;
+        boolean moving=false;
+        for(int i=0;i<axisBounds.length;i++){
+            if(!Double.isFinite(axisBounds[i])||Math.abs(axisBounds[i]-targets[i])<.001)axisBounds[i]=targets[i];
+            else{axisBounds[i]+=(targets[i]-axisBounds[i])*blend;moving=true;}
+        }
+        if(moving)postInvalidateOnAnimation();
+        for(Series s:series){
+            boolean kg=s.metric==ChartData.Metric.WEIGHT;s.min=axisBounds[kg?0:2];s.max=axisBounds[kg?1:3];
             if(s.max<=s.min)s.max=s.min+1;
             for(int i=0;i<s.groups.size();i++){
                 ChartData.Group g=s.groups.get(i);s.xs[i]=plot.left+(float)((g.timestamp()-viewport.left())/viewport.span())*plot.width();
                 s.ys[i]=plot.bottom-(float)((g.mean()-s.min)/(s.max-s.min))*plot.height();
             }
-            series.add(s);
         }
         Series first=series.get(0);groups=first.groups;xs=first.xs;ys=first.ys;
     }

@@ -4,6 +4,13 @@ import static org.junit.Assert.*;
 import java.time.*;
 import java.util.*;
 public class ChartDataTest {
+    @Test public void visibleScaleClipsOffscreenExtremesButKeepsCrossingLines(){
+        var groups=List.of(new ChartData.Group(0,0,0,150),new ChartData.Group(1,1,100,80),new ChartData.Group(2,2,200,82),new ChartData.Group(3,3,300,30));
+        assertArrayEquals(new double[]{80,82},ChartData.visibleBounds(groups,100,200),.0001);
+        assertArrayEquals(new double[]{97.5,132.5},ChartData.visibleBounds(groups,25,75),.0001);
+        assertArrayEquals(new double[]{81,82},ChartData.visibleBounds(groups,150,200),.0001);
+        assertFalse(Double.isFinite(ChartData.visibleBounds(groups,400,500)[0]));
+    }
     @Test public void calendarPeriodsHandleDaylightSaving(){ZoneId zone=ZoneId.of("Europe/Berlin");Instant now=ZonedDateTime.of(2026,3,30,10,0,0,0,zone).toInstant();assertEquals(LocalDate.of(2026,3,24).atStartOfDay(zone).toEpochSecond(),ChartData.start(0,now,zone));assertEquals(0,ChartData.start(4,now,zone));}
     @Test public void metricsNeverTurnMissingValuesIntoZero(){Measurement m=new Measurement("A",1,1,80,Double.NaN,50,40,3,1700);List<Store.Row> rows=List.of(new Store.Row(m,"pending",""));assertTrue(ChartData.valid(rows,ChartData.Metric.FAT).isEmpty());assertEquals(1,ChartData.valid(rows,ChartData.Metric.WEIGHT).size());assertEquals(32,ChartData.Metric.MUSCLE_KG.value(m),0);}
     @Test public void closeSamplesAreAveragedWithoutChangingOriginals(){
